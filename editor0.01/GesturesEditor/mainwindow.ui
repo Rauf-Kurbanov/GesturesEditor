@@ -27,7 +27,7 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="drawLineButton">
          <property name="minimumSize">
           <size>
            <width>80</width>
