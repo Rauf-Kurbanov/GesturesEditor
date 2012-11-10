@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri 9. Nov 12:04:30 2012
+** Created: Sat 10. Nov 19:03:12 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -20,6 +20,7 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
 #include <QtGui/QPushButton>
+#include <QtGui/QSpacerItem>
 #include <QtGui/QStatusBar>
 #include <QtGui/QToolBar>
 #include <QtGui/QVBoxLayout>
@@ -35,8 +36,10 @@ public:
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
     QPushButton *drawLineButton;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_2;
+    QPushButton *drawEllipseButton;
+    QPushButton *drawRectangleButton;
+    QPushButton *clearButton;
+    QSpacerItem *horizontalSpacer;
     QGraphicsView *graphicsView;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -46,16 +49,17 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(757, 467);
+        MainWindow->resize(694, 473);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(110, 40, 551, 341));
+        horizontalLayoutWidget->setGeometry(QRect(10, 20, 661, 401));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setSizeConstraint(QLayout::SetMinimumSize);
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
@@ -66,30 +70,41 @@ public:
 
         verticalLayout->addWidget(drawLineButton);
 
-        pushButton_3 = new QPushButton(horizontalLayoutWidget);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setMinimumSize(QSize(80, 80));
+        drawEllipseButton = new QPushButton(horizontalLayoutWidget);
+        drawEllipseButton->setObjectName(QString::fromUtf8("drawEllipseButton"));
+        drawEllipseButton->setMinimumSize(QSize(80, 80));
 
-        verticalLayout->addWidget(pushButton_3);
+        verticalLayout->addWidget(drawEllipseButton);
 
-        pushButton_2 = new QPushButton(horizontalLayoutWidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setMinimumSize(QSize(80, 80));
+        drawRectangleButton = new QPushButton(horizontalLayoutWidget);
+        drawRectangleButton->setObjectName(QString::fromUtf8("drawRectangleButton"));
+        drawRectangleButton->setMinimumSize(QSize(80, 80));
 
-        verticalLayout->addWidget(pushButton_2);
+        verticalLayout->addWidget(drawRectangleButton);
+
+        clearButton = new QPushButton(horizontalLayoutWidget);
+        clearButton->setObjectName(QString::fromUtf8("clearButton"));
+        clearButton->setMinimumSize(QSize(80, 50));
+
+        verticalLayout->addWidget(clearButton);
 
 
         horizontalLayout->addLayout(verticalLayout);
 
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
         graphicsView = new QGraphicsView(horizontalLayoutWidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        graphicsView->setMinimumSize(QSize(200, 180));
 
         horizontalLayout->addWidget(graphicsView);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 757, 21));
+        menuBar->setGeometry(QRect(0, 0, 694, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -107,8 +122,9 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
         drawLineButton->setText(QApplication::translate("MainWindow", "Line", 0, QApplication::UnicodeUTF8));
-        pushButton_3->setText(QApplication::translate("MainWindow", "Circle", 0, QApplication::UnicodeUTF8));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Square", 0, QApplication::UnicodeUTF8));
+        drawEllipseButton->setText(QApplication::translate("MainWindow", "Ellipse", 0, QApplication::UnicodeUTF8));
+        drawRectangleButton->setText(QApplication::translate("MainWindow", "Rectangle", 0, QApplication::UnicodeUTF8));
+        clearButton->setText(QApplication::translate("MainWindow", "Clear", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

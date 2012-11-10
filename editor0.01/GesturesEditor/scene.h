@@ -5,9 +5,11 @@
 class Scene : public QGraphicsScene
 {
 public:
-	Scene();
-	void drawLine(bool checked);
-
+    Scene();
+    void drawLine();
+    void drawEllipse();
+    void drawRectangle();
+    void clearScene();
 private:
 
 };
