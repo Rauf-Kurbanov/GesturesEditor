@@ -18,7 +18,10 @@ public:
 	~MainWindow();
 
 private slots:
-	void drawLine(bool checked);
+	void clearScene();
+	void drawRectangle();
+	void drawEllipse();
+	void drawLine();
 
 private:
 	Ui::MainWindow *ui;
