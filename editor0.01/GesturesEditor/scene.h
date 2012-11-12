@@ -1,6 +1,6 @@
-#ifndef SCENE_H
-#define SCENE_H
+#pragma once
 #include <QtGui>
+#include "line.h"
 
 class Scene : public QGraphicsScene
 {
@@ -14,4 +14,3 @@ private:
 
 };
 
-#endif // SCENE_H

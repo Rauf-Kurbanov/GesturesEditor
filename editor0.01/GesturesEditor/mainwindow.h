@@ -1,9 +1,9 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <QtGui/QWidget>
 #include <scene.h>
+#include <painter.h>
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +26,6 @@ private slots:
 private:
 	Ui::MainWindow *ui;
 	Scene *mScene;
+	Painter *mPainter;
 };
 
-#endif // MAINWINDOW_H

@@ -12,9 +12,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    scene.cpp
+    scene.cpp \
+    painter.cpp \
+    line.cpp
 
 HEADERS  += mainwindow.h \
-    scene.h
+    scene.h \
+    painter.h \
+    line.h
 
 FORMS    += mainwindow.ui

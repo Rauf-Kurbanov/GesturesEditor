@@ -1,11 +1,10 @@
 #include "scene.h"
-#include <QGraphicsView>
 Scene::Scene()
 {
 }
 
 void Scene::drawLine() {
-	this->addLine(10, 10, 140, 240);
+
 }
 
 void Scene::drawEllipse() {

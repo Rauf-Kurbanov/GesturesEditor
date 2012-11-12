@@ -12,10 +12,12 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(this->ui->clearButton, SIGNAL(clicked(bool)), this, SLOT(clearScene()));
 	this->mScene = new Scene();
 	ui->graphicsView->setScene(this->mScene);
+
 }
 
 void MainWindow::drawLine() {
-	mScene->drawLine();
+	Line *line = new Line();
+	this->mScene->addItem(line);
 }
 
 void MainWindow::drawEllipse() {
