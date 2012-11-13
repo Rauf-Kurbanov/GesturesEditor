@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <QtGui/QWidget>
@@ -26,6 +25,8 @@ private slots:
 private:
 	Ui::MainWindow *ui;
 	Scene *mScene;
+	QPainter *mPainter;
+	static const int height = 400;
+	static const int width = 525;
 };
 
-#endif // MAINWINDOW_H
