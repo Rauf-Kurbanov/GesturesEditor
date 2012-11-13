@@ -1,6 +1,6 @@
-#ifndef SCENE_H
-#define SCENE_H
+#pragma once
 #include <QtGui>
+#include "line.h"
 
 class Scene : public QGraphicsScene
 {
@@ -11,7 +11,7 @@ public:
 	void drawRectangle();
 	void clearScene();
 private:
+	QPen *mPen;
 
 };
 
-#endif // SCENE_H
