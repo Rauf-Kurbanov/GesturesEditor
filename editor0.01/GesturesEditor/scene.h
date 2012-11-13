@@ -11,6 +11,7 @@ public:
     void drawRectangle();
     void clearScene();
 private:
+	QPen *mPen;
 
 };
 

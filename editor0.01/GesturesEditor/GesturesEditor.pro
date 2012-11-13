@@ -18,7 +18,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     scene.h \
-    painter.h \
     line.h
 
 FORMS    += mainwindow.ui

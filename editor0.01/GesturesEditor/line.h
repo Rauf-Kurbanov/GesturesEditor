@@ -1,11 +1,9 @@
 #pragma once
-#include <painter.h>
+#include <QtGui>
 
-class Line : public QGraphicsItem
+class Line : QGraphicsLineItem
 {
 public:
 	Line();
-	QRect QRectF(const QPointF &topleft, const QPointF &bottomRight);
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 };
 

@@ -3,7 +3,6 @@
 #include <QMainWindow>
 #include <QtGui/QWidget>
 #include <scene.h>
-#include <painter.h>
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +25,8 @@ private slots:
 private:
 	Ui::MainWindow *ui;
 	Scene *mScene;
-	Painter *mPainter;
+	QPainter *mPainter;
+	static const int height = 400;
+	static const int width = 525;
 };
 
