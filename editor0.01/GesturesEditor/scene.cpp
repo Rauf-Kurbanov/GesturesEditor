@@ -5,6 +5,7 @@ Scene::Scene()
 }
 
 void Scene::drawLine() {
+	QPen pen();
 	QGraphicsLineItem *line = this->addLine(QLineF(10, 10, 200, 120), *this->mPen);
 
 }
