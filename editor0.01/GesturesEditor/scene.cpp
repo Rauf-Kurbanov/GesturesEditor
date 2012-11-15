@@ -5,8 +5,8 @@ Scene::Scene()
 }
 
 void Scene::drawLine() {
-	QGraphicsLineItem *line = this->addLine(QLineF(10, 10, 200, 120), *this->mPen);
-
+	QGraphicsLineItem *coolLine = new QGraphicsLineItem(10, 20, 40, 60, NULL, this);
+	//QGraphicsLineItem *line = this->addLine(QLineF(10, 10, 200, 120), *this->mPen);
 }
 
 void Scene::drawEllipse() {

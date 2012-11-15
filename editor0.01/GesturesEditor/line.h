@@ -5,5 +5,6 @@ class Line : QGraphicsLineItem
 {
 public:
 	Line();
+
 };
 
