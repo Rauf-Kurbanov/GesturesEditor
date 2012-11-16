@@ -19,6 +19,9 @@ public:
 private:
 	Ui::GestEdit *mUi;
 	Scene *mScene;
+
+private slots:
+	void drawLine(bool checked);
 };
 
 #endif // GESTEDIT_H

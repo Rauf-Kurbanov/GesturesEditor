@@ -7,7 +7,11 @@ GestEdit::GestEdit(QWidget *parent) :
 {
 	mUi->setupUi(this);
 	connect(mUi->drawLineButton, SIGNAL(clicked(bool)), this, SLOT(drawLine(bool)));
+}
 
+void GestEdit::drawLine(bool checked)
+{
+	mScene->drawLine(checked);
 }
 
 GestEdit::~GestEdit()
