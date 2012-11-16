@@ -1,6 +1,4 @@
-#ifndef SCENE_H
-#define SCENE_H
-
+#pragma once
 #include <QGraphicsScene>
 
 class Scene : public QGraphicsScene
@@ -22,4 +20,3 @@ private:
 	virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 };
 
-#endif // SCENE_H

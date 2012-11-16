@@ -12,9 +12,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         gestEdit.cpp \
-    scene.cpp
+    scene.cpp \
+    item.cpp \
+    line.cpp
 
 HEADERS  += gestEdit.h \
-    scene.h
+    scene.h \
+    item.h \
+    line.h
 
 FORMS    += gestEdit.ui
