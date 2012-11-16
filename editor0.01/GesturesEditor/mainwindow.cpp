@@ -11,9 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(this->ui->drawRectangleButton, SIGNAL(clicked(bool)), this, SLOT(drawRectangle()));
 	connect(this->ui->clearButton, SIGNAL(clicked(bool)), this, SLOT(clearScene()));
 	this->mScene = new Scene();
+	this->mScene->setSceneRect(0, 0,this->width, this->height);
 	ui->graphicsView->setRenderHint(QPainter::Antialiasing, true);
-	ui->graphicsView->setFixedHeight(this->height);
-	ui->graphicsView->setFixedWidth(this->width);
 	ui->graphicsView->setScene(this->mScene);
 
 }

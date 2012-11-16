@@ -11,6 +11,10 @@ public:
 	void drawRectangle();
 	void clearScene();
 private:
-	QPen *mPen;
+	virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+	virtual void reshapeLine(QGraphicsSceneMouseEvent *event);
+	QGraphicsLineItem *mLine;
+	QPen mPen;
 };
 
