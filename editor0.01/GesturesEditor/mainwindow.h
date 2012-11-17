@@ -25,7 +25,6 @@ private slots:
 private:
 	Ui::MainWindow *ui;
 	Scene *mScene;
-	QPainter *mPainter;
 	static const int height = 400;
 	static const int width = 525;
 };

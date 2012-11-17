@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat 10. Nov 19:03:12 2012
+** Created: Fri 16. Nov 00:26:45 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -97,6 +97,7 @@ public:
 
         graphicsView = new QGraphicsView(horizontalLayoutWidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        graphicsView->setEnabled(true);
         graphicsView->setMinimumSize(QSize(200, 180));
 
         horizontalLayout->addWidget(graphicsView);

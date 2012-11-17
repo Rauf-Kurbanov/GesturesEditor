@@ -1,5 +1,4 @@
-#ifndef GESTEDIT_H
-#define GESTEDIT_H
+#pragma once
 
 #include <QWidget>
 #include <scene.h>
@@ -24,4 +23,3 @@ private slots:
 	void drawLine(bool checked);
 };
 
-#endif // GESTEDIT_H
