@@ -8,7 +8,7 @@ Line::Line(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) : Item
 	this->mPen = QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap);
 	QPoint topLeft = QPoint(x1, y1);
 	QPoint bottomRight = QPoint(x2, y2);
-	this->mBoundingRect = QRectF(topLeft, bottomRight);
+	this->mBoundingRect = QRectF(topLeft, bottomRight);// test variant
 }
 
 QRectF Line::boundingRect() const {
