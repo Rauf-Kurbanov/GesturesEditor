@@ -13,7 +13,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     scene.cpp \
-    painter.cpp \
     line.cpp
 
 HEADERS  += mainwindow.h \
