@@ -12,23 +12,23 @@ Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 }
 
 void Item::setX1andY1(qreal x, qreal y) {
-	mX1 = x;
-	mY1 = y;
+	this->mX1 = x;
+	this->mY1 = y;
 }
 
 void Item::setX1andY2(qreal x, qreal y) {
-	mX1 = x;
-	mY2 = y;
+	this->mX1 = x;
+	this->mY2 = y;
 }
 
 void Item::setX2andY1(qreal x, qreal y) {
-	mX2 = x;
-	mY1 = y;
+	this->mX2 = x;
+	this->mY1 = y;
 }
 
 void Item::setX2andY2(qreal x, qreal y) {
-	mX2 = x;
-	mY2 = y;
+	this->mX2 = x;
+	this->mY2 = y;
 }
 
 //void Item::mousePressEvent(QGraphicsSceneMouseEvent *event) {

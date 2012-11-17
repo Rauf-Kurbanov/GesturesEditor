@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'gestEdit.ui'
 **
-** Created: Fri 16. Nov 09:49:00 2012
+** Created: Sat 17. Nov 20:27:16 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

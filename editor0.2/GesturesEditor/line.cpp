@@ -11,6 +11,11 @@ Line::Line(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) : Item
 	this->mBoundingRect = QRectF(topLeft, bottomRight);// test variant
 }
 
+//void Line::setX2andY2(qreal x, qreal y) {
+//	mX2 = x;
+//	mY2 = y;
+//}
+
 QRectF Line::boundingRect() const {
 	return this->mBoundingRect;
 }
@@ -23,3 +28,5 @@ void Line::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 void Line::drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
 	painter->drawLine(this->mX1, this->mY1, this->mX2, this->mY2);
 }
+
+

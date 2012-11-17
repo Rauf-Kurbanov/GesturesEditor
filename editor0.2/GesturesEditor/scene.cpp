@@ -2,6 +2,7 @@
 
 Scene::Scene() {
 	this->mPen = QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap);
+
 }
 
 void Scene::drawLine(bool checked) {
@@ -31,7 +32,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	}*/
 	int x1 = event->scenePos().x();
 	int y1 = event->scenePos().y();
-	this->mLine = new Line(x1, y1, x1, y1);
+	this->mLine = new Line(x1, y1, x1 + 1, y1 + 1);
 	this->mLine->setVisible(true);
 	this->addItem(this->mLine);
 
