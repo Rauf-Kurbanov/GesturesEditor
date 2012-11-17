@@ -1,5 +1,10 @@
 #pragma once
+
 #include <QGraphicsScene>
+#include "line.h"
+#include "arc.h"
+#include "rectangle.h"
+#include "ellipse.h"
 
 class Scene : public QGraphicsScene
 {
@@ -8,11 +13,14 @@ public:
 	void drawLine(bool checked);
 
 private:
-	QPen *mPen;
+	QPen mPen;
 
 	enum ItemTypes {
-		none,
-		line
+		none
+		, line
+		, rectangle
+		, arc
+		, ellipse
 	};
 
 	ItemTypes mItemType;

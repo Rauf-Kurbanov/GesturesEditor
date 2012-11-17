@@ -18,8 +18,8 @@ public:
 
 	virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
 	virtual void drawItem(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) = 0;
-	virtual void drawFieldForResizeItem(QPainter* painter);
-	virtual void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
+//	virtual void drawFieldForResizeItem(QPainter* painter);
+//	virtual void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
 
 protected:
 	QRectF mBoundingRect;

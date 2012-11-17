@@ -2,11 +2,13 @@
 
 Scene::Scene()
 {
+	this->mPen = QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap);
 }
 
 void Scene::drawLine(bool checked) {
-	if (checked)
-		mItemType = line;
+//	if (checked)
+//		mItemType = line;
+	this->addItem(&Line(40,40, 120, 120));
 }
 
 

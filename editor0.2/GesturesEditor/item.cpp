@@ -1,6 +1,7 @@
 #include "item.h"
 
-Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) {
+Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
+	QGraphicsItem(parent){
 	QPoint topLeft = QPoint(x1, y1);
 	QPoint bottomRight = QPoint(x2, y2);
 	this->mBoundingRect = QRect(topLeft, bottomRight);
@@ -30,9 +31,9 @@ void Item::setX2andY2(qreal x, qreal y) {
 	mY2 = y;
 }
 
-void Item::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-	QGraphicsItem::mousePressEvent(event);
-}
+//void Item::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+//	QGraphicsItem::mousePressEvent(event);
+//}
 
 void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
@@ -47,16 +48,16 @@ void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 //	}
 }
 
-void Item::drawFieldForResizeItem(QPainter* painter)
-{
-	QRectF itemBoundingRect = this->mBoundingRect;
-	qreal x1 = itemBoundingRect.left();
-	qreal x2 = itemBoundingRect.right();
-	qreal y1 = itemBoundingRect.top();
-	qreal y2 = itemBoundingRect.bottom();
+//void Item::drawFieldForResizeItem(QPainter* painter)
+//{
+//	QRectF itemBoundingRect = this->mBoundingRect;
+//	qreal x1 = itemBoundingRect.left();
+//	qreal x2 = itemBoundingRect.right();
+//	qreal y1 = itemBoundingRect.top();
+//	qreal y2 = itemBoundingRect.bottom();
 
-	painter->drawRect(x1, y1, resizeDrift, resizeDrift);
-	painter->drawRect(x2 - resizeDrift, y2 - resizeDrift, resizeDrift, resizeDrift);
-	painter->drawRect(x1, y2 - resizeDrift, resizeDrift, resizeDrift);
-	painter->drawRect(x2 - resizeDrift, y1, resizeDrift, resizeDrift);
-}
+//	painter->drawRect(x1, y1, resizeDrift, resizeDrift);
+//	painter->drawRect(x2 - resizeDrift, y2 - resizeDrift, resizeDrift, resizeDrift);
+//	painter->drawRect(x1, y2 - resizeDrift, resizeDrift, resizeDrift);
+//	painter->drawRect(x2 - resizeDrift, y1, resizeDrift, resizeDrift);
+//}
