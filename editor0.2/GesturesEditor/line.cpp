@@ -11,10 +11,10 @@ Line::Line(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) : Item
 	this->mBoundingRect = QRectF(topLeft, bottomRight);// test variant
 }
 
-//void Line::setX2andY2(qreal x, qreal y) {
-//	mX2 = x;
-//	mY2 = y;
-//}
+void Line::setX2andY2(qreal x, qreal y) {
+	mX2 = x;
+	mY2 = y;
+}
 
 QRectF Line::boundingRect() const {
 	return this->mBoundingRect;
