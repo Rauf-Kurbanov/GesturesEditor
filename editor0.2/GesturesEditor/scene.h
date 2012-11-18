@@ -11,6 +11,9 @@ class Scene : public QGraphicsScene
 public:
 	Scene();
 	void drawLine(bool checked);
+	void drawRect(bool checked);
+	void drawEllipse(bool checked);
+	void drawArc(bool checked);
 
 private:
 	QPen mPen;
@@ -19,8 +22,8 @@ private:
 		none
 		, line
 		, rectangle
-		, arc
 		, ellipse
+		, arc
 	};
 
 	ItemTypes mItemType;

@@ -8,9 +8,16 @@ Scene::Scene()
 void Scene::drawLine(bool checked) {
 //	if (checked)
 //		mItemType = line;
-	this->addItem(&Line(40,40, 120, 120));
+	this->addItem(&Line(40,40, 120, 120)); ///нафига ссылка?
 }
 
+void Scene::drawRect(bool checked) {}
+
+
+void Scene::drawEllipse(bool checked) {}
+
+
+void Scene::drawArc(bool checked) {}
 
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
