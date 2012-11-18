@@ -24,7 +24,11 @@ private:
 	};
 
 	ItemTypes mItemType;
-
 	virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
+	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+	virtual void mouseMoveEvent( QGraphicsSceneMouseEvent *event);
+	virtual void reshapeLine(QGraphicsSceneMouseEvent *event);
+
+	Line *mLine;
 };
 
