@@ -18,6 +18,8 @@ public:
 private:
 	Ui::GestEdit *mUi;
 	Scene *mScene;
+	static const int height = 400;
+	static const int width = 525;
 
 private slots:
 	void drawLine(bool checked);

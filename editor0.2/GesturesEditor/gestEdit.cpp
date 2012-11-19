@@ -6,6 +6,11 @@ GestEdit::GestEdit(QWidget *parent) :
 	mUi(new Ui::GestEdit)
 {
 	mUi->setupUi(this);
+	this->mScene = new Scene();
+	this->mScene->setSceneRect(0, 0, this->width, this->height);
+	mUi->graphicsView->setRenderHint(QPainter::Antialiasing, true);
+	mUi->graphicsView->setScene(this->mScene);
+
 	connect(mUi->drawLineButton, SIGNAL(clicked(bool)), this, SLOT(drawLine(bool)));
 	connect(mUi->drawRectButton, SIGNAL(clicked(bool)), this, SLOT(drawRect(bool)));
 	connect(mUi->drawEllipseButton, SIGNAL(clicked(bool)), this, SLOT(drawEllipse(bool)));

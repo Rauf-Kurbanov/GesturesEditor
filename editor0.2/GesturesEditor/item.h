@@ -1,10 +1,10 @@
 #pragma once
 #include <QtGui>
 
-const int drift = 15;
-const int resizeDrift = 10;
-const int scalingDrift = 10;
-const int scalingRect = 6;
+//const int drift = 15;
+//const int resizeDrift = 10;
+//const int scalingDrift = 10;
+//const int scalingRect = 6;
 
 class Item : public QGraphicsItem
 {
