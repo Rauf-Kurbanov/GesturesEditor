@@ -5,6 +5,8 @@ Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 	QPoint topLeft = QPoint(x1, y1);
 	QPoint bottomRight = QPoint(x2, y2);
 	this->mBoundingRect = QRect(topLeft, bottomRight);
+	this->mPen = QPen(Qt::red, 3, Qt::SolidLine, Qt::RoundCap);
+	this->mBrush = QBrush(Qt::SolidPattern);
 	this->mX1 = x1;
 	this->mY1 = y1;
 	this->mX2 = x2;
@@ -39,7 +41,7 @@ void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 {
 	painter->setPen(mPen);
 	painter->setBrush(mBrush);
-	drawItem(painter, option, widget);
+//	drawItem(painter, option, widget);
 //	if (option->state & QStyle::State_Selected) {
 //		painter->save();
 //		setPenBrushForExtraxtion(painter, option);

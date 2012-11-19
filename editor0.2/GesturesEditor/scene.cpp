@@ -8,9 +8,9 @@ Scene::Scene() {
 void Scene::drawLine(bool checked) {
 //	if (checked)
 //		mItemType = line;
-	Line *simpleLine = new Line(10, 10, 120, 120);
-	this->addItem(simpleLine);
-	simpleLine->setVisible(true);
+//	Line *simpleLine = new Line(10, 10, 120, 120);
+//	this->addItem(simpleLine);
+//	simpleLine->setVisible(true);
 }
 
 
@@ -52,4 +52,5 @@ void Scene::reshapeLine(QGraphicsSceneMouseEvent *event) {
 	int x2 = event->scenePos().x();
 	int y2 = event->scenePos().y();
 	this->mLine->setX2andY2(x2, y2);
+	invalidate();
 }

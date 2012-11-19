@@ -1,10 +1,10 @@
 #pragma once
 #include <QtGui>
 
-const int drift = 15;
-const int resizeDrift = 10;
-const int scalingDrift = 10;
-const int scalingRect = 6;
+//const int drift = 15;
+//const int resizeDrift = 10;
+//const int scalingDrift = 10;
+//const int scalingRect = 6;
 
 class Item : public QGraphicsItem
 {
@@ -14,8 +14,8 @@ public:
 	void setX1andY1(qreal x, qreal y);
 	void setX1andY2(qreal x, qreal y);
 	void setX2andY1(qreal x, qreal y);
+	void setX2andY2(qreal x, qreal y);
 
-	virtual void setX2andY2(qreal x, qreal y);
 	virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
 	virtual void drawItem(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) = 0;
 //	virtual void drawFieldForResizeItem(QPainter* painter);
