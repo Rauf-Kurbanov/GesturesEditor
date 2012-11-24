@@ -5,7 +5,8 @@ Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 	QPoint topLeft = QPoint(x1, y1);
 	QPoint bottomRight = QPoint(x2, y2);
 	this->mBoundingRect = QRect(topLeft, bottomRight);
-	this->mPen = QPen(Qt::red, 3, Qt::SolidLine, Qt::RoundCap);
+
+	this->mPen = QPen(Qt::darkGray, 3, Qt::SolidLine, Qt::RoundCap);
 	this->mBrush = QBrush(Qt::SolidPattern);
 	this->mX1 = x1;
 	this->mY1 = y1;
@@ -15,16 +16,6 @@ Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 
 void Item::setX1andY1(qreal x, qreal y) {
 	this->mX1 = x;
-	this->mY1 = y;
-}
-
-void Item::setX1andY2(qreal x, qreal y) {
-	this->mX1 = x;
-	this->mY2 = y;
-}
-
-void Item::setX2andY1(qreal x, qreal y) {
-	this->mX2 = x;
 	this->mY1 = y;
 }
 

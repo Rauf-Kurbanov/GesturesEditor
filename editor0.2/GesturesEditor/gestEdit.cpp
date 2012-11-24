@@ -16,6 +16,7 @@ GestEdit::GestEdit(QWidget *parent) :
 	connect(mUi->drawRectButton, SIGNAL(clicked(bool)), this, SLOT(drawRect(bool)));
 	connect(mUi->drawEllipseButton, SIGNAL(clicked(bool)), this, SLOT(drawEllipse(bool)));
 	connect(mUi->drawArcButton, SIGNAL(clicked(bool)), this, SLOT(drawArc(bool)));
+	connect(mUi->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
 }
 
 void GestEdit::initButtonGroup()
@@ -60,6 +61,11 @@ void GestEdit::drawArc(bool checked)
 	mScene->drawArc(checked);
 	if (checked)
 		setHighlightOneButton(mUi->drawArcButton);
+}
+
+void GestEdit::clear() {
+	mScene->clear();
+	mScene->invalidate();
 }
 
 GestEdit::~GestEdit()

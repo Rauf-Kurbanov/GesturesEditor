@@ -12,8 +12,6 @@ class Item : public QGraphicsItem
 public:
 	Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent = 0);
 	void setX1andY1(qreal x, qreal y);
-	void setX1andY2(qreal x, qreal y);
-	void setX2andY1(qreal x, qreal y);
 	void setX2andY2(qreal x, qreal y);
 
 	virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
