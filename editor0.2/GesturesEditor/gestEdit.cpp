@@ -10,6 +10,7 @@ GestEdit::GestEdit(QWidget *parent) :
 	this->mScene->setSceneRect(0, 0, this->width, this->height);
 	mUi->graphicsView->setRenderHint(QPainter::Antialiasing, true);
 	mUi->graphicsView->setScene(this->mScene);
+	initButtonGroup();
 
 	connect(mUi->drawLineButton, SIGNAL(clicked(bool)), this, SLOT(drawLine(bool)));
 	connect(mUi->drawRectButton, SIGNAL(clicked(bool)), this, SLOT(drawRect(bool)));
@@ -17,24 +18,48 @@ GestEdit::GestEdit(QWidget *parent) :
 	connect(mUi->drawArcButton, SIGNAL(clicked(bool)), this, SLOT(drawArc(bool)));
 }
 
+void GestEdit::initButtonGroup()
+{
+	mButtonGroup.append(mUi->drawLineButton);
+	mButtonGroup.append(mUi->drawEllipseButton);
+	mButtonGroup.append(mUi->drawArcButton);
+	mButtonGroup.append(mUi->drawRectButton);
+}
+
+void GestEdit::setHighlightOneButton(QAbstractButton *oneButton)
+{
+	foreach (QAbstractButton *button, mButtonGroup) { //тут надо проверить по стайлгайду
+		if (button != oneButton)
+			button->setChecked(false);
+	}
+}
+
 void GestEdit::drawLine(bool checked)
 {
 	mScene->drawLine(checked);
+	if (checked)
+		setHighlightOneButton(mUi->drawLineButton);
 }
 
 void GestEdit::drawRect(bool checked)
 {
 	mScene->drawRect(checked);
+	if (checked)
+		setHighlightOneButton(mUi->drawRectButton);
 }
 
 void GestEdit::drawEllipse(bool checked)
 {
 	mScene->drawEllipse(checked);
+	if (checked)
+		setHighlightOneButton(mUi->drawEllipseButton);
 }
 
 void GestEdit::drawArc(bool checked)
 {
 	mScene->drawArc(checked);
+	if (checked)
+		setHighlightOneButton(mUi->drawArcButton);
 }
 
 GestEdit::~GestEdit()

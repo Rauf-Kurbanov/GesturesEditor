@@ -2,56 +2,81 @@
 
 Scene::Scene() {
 	this->mPen = QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap);
-
+	this->mItemType = none;
 }
 
 void Scene::drawLine(bool checked) {
-//	if (checked)
-//		mItemType = line;
-
-//	Line *simpleLine = new Line(10, 10, 120, 120);
-//	this->addItem(simpleLine);
-//	simpleLine->setVisible(true);
+	if (checked)
+		mItemType = line;
 }
 
-void Scene::drawRect(bool checked) {}
+void Scene::drawRect(bool checked) {
+	if (checked)
+		mItemType = rectangle;
+}
 
-void Scene::drawEllipse(bool checked) {}
+void Scene::drawEllipse(bool checked) {
+	if (checked)
+		mItemType = ellipse;
+}
 
-void Scene::drawArc(bool checked) {}
+void Scene::drawArc(bool checked) {
+	if (checked)
+		mItemType = arc;
+}
 
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mousePressEvent(event);
-	/*
-	setDragMode(mItemType);
+
 	switch (mItemType) {
-		case line :
-			setX1andY1(event);
-			mLine = new Line(mX1, mY1, mX1, mY1, NULL);
-			mLine->setPenBrush(mPenStyleItems, mPenWidthItems, mPenColorItems, mBrushStyleItems, mBrushColorItems);
-			addItem(mLine);
-			setZValue(mLine);
-			removeMoveFlag(event, mLine);
-			mWaitMove = true;
-			break;
-
-	}*/
-	int x1 = event->scenePos().x();
-	int y1 = event->scenePos().y();
-	this->mLine = new Line(x1, y1, x1 + 1, y1 + 1);
-	this->mLine->setVisible(true);
-	this->addItem(this->mLine);
-
+//	case none:
+//		return;
+	case ellipse:
+		break;
+	case rectangle:
+		break;
+	case arc:
+		break;
+	case line :
+		int x1 = event->scenePos().x();
+		int y1 = event->scenePos().y();
+		this->mLine = new Line(x1, y1, x1 + 1, y1 + 1);
+		this->mLine->setVisible(true);
+		this->addItem(this->mLine);
+		break;
+	}
 }
 
 void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mouseReleaseEvent(event);
-	this->reshapeLine(event);
+	switch (mItemType) {
+	case ellipse:
+		break;
+	case rectangle:
+		break;
+	case arc:
+		break;
+	 case line:
+		this->reshapeLine(event);
+		break;
+	default:
+		mItemType = none;
+	}
 }
 
 void Scene::mouseMoveEvent( QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mouseMoveEvent(event);
-	this->reshapeLine(event);
+	switch (mItemType) {
+	case ellipse:
+		break;
+	case rectangle:
+		break;
+	case arc:
+		break;
+	 case line:
+		this->reshapeLine(event);
+		break;
+	}
 }
 
 void Scene::reshapeLine(QGraphicsSceneMouseEvent *event) {

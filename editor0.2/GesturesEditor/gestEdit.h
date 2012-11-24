@@ -18,8 +18,13 @@ public:
 private:
 	Ui::GestEdit *mUi;
 	Scene *mScene;
+	QList<QAbstractButton *> mButtonGroup;
+
 	static const int height = 400;
 	static const int width = 525;
+
+	void initButtonGroup();
+	void setHighlightOneButton(QAbstractButton *oneButton);
 
 private slots:
 	void drawLine(bool checked);
