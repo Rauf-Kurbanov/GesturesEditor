@@ -16,7 +16,6 @@ public:
 	void drawArc(bool checked);
 
 private:
-	QPen mPen;
 
 	enum ItemTypes {
 		none
@@ -30,8 +29,14 @@ private:
 	virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
 	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 	virtual void mouseMoveEvent( QGraphicsSceneMouseEvent *event);
-	virtual void reshapeLine(QGraphicsSceneMouseEvent *event);
+	void reshapeLine(QGraphicsSceneMouseEvent *event);
+	void reshapeRect(QGraphicsSceneMouseEvent *event);
+	void reshapeEllipse(QGraphicsSceneMouseEvent *event);
+	void reshapeArc(QGraphicsSceneMouseEvent *event);
 
 	Line *mLine;
+	Rectangle *mRect;
+	Ellipse *mEllipse;
+	Arc *mArc;
 };
 
