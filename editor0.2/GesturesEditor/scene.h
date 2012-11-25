@@ -14,9 +14,12 @@ public:
 	void drawRect(bool checked);
 	void drawEllipse(bool checked);
 	void drawArc(bool checked);
+	void addNone(bool checked);
+
+signals:
+	void resetHighlightAllButtons();
 
 private:
-
 	enum ItemTypes {
 		none
 		, line

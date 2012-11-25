@@ -35,6 +35,14 @@ void GestEdit::setHighlightOneButton(QAbstractButton *oneButton)
 	}
 }
 
+void GestEdit::resetHighlightAllButtons()
+{
+	foreach (QAbstractButton *button, mButtonGroup) {
+		button->setChecked(false);
+	}
+	mScene->addNone(true);
+}
+
 void GestEdit::drawLine(bool checked)
 {
 	mScene->drawLine(checked);

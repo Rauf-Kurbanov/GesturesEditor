@@ -24,6 +24,12 @@ void Scene::drawArc(bool checked) {
 		mItemType = arc;
 }
 
+void Scene::addNone(bool checked) {
+	if (checked) {
+		mItemType = none;
+	}
+}
+
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mousePressEvent(event);
 	int x1 = event->scenePos().x();
@@ -54,27 +60,6 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	}
 }
 
-void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-	QGraphicsScene::mouseReleaseEvent(event);
-	switch (mItemType) {
-	case ellipse:
-		this->reshapeEllipse(event);
-		break;
-	case rectangle:
-		this->reshapeRect(event);
-		break;
-	case arc:
-		this->reshapeArc(event);
-		break;
-	 case line:
-		this->reshapeLine(event);
-		break;
-	default:
-		mItemType = none;
-	}
-	//this->mItemType = none;
-}
-
 void Scene::mouseMoveEvent( QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mouseMoveEvent(event);
 	switch (mItemType) {
@@ -93,6 +78,28 @@ void Scene::mouseMoveEvent( QGraphicsSceneMouseEvent *event) {
 	case none:
 		break;
 	}
+}
+
+void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
+	QGraphicsScene::mouseReleaseEvent(event);
+	switch (mItemType) {
+	case ellipse:
+		this->reshapeEllipse(event);
+		break;
+	case rectangle:
+		this->reshapeRect(event);
+		break;
+	case arc:
+		this->reshapeArc(event);
+		break;
+	 case line:
+		this->reshapeLine(event);
+		break;
+//	default:
+//		mItemType = none;
+	}
+//	mItemType = none;
+//	emit resetHighlightAllButtons(); //wtf?
 }
 
 void Scene::reshapeLine(QGraphicsSceneMouseEvent *event) {
