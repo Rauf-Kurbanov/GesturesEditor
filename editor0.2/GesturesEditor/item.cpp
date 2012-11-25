@@ -2,16 +2,17 @@
 
 Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 	QGraphicsItem(parent){
-	QPoint topLeft = QPoint(x1, y1);
-	QPoint bottomRight = QPoint(x2, y2);
-	this->mBoundingRect = QRect(topLeft, bottomRight);
-
-	this->mPen = QPen(Qt::darkGray, 3, Qt::SolidLine, Qt::RoundCap);
-	this->mBrush = QBrush(Qt::SolidPattern);
 	this->mX1 = x1;
 	this->mY1 = y1;
 	this->mX2 = x2;
 	this->mY2 = y2;
+	setFlag(QGraphicsItem::ItemIsSelectable, true);
+	setFlag(QGraphicsItem::ItemIsMovable, true);
+	this->mPen = QPen(Qt::darkGray, 3, Qt::SolidLine, Qt::RoundCap);
+	this->mBrush = QBrush(Qt::SolidPattern);
+	QPoint topLeft = QPoint(this->mX1, this->mY1);
+	QPoint bottomRight = QPoint(this->mX2, this->mY2);
+	this->mBoundingRect = QRectF(topLeft, bottomRight);
 }
 
 void Item::setX1andY1(qreal x, qreal y) {
@@ -24,10 +25,6 @@ void Item::setX2andY2(qreal x, qreal y) {
 	this->mY2 = y;
 }
 
-//void Item::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-//	QGraphicsItem::mousePressEvent(event);
-//}
-
 void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
 	painter->setPen(mPen);
@@ -39,6 +36,11 @@ void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 //		drawExtractionForItem(painter);
 //		painter->restore();
 //	}
+}
+
+void Item::drawScalingRects(QPainter *painter) {
+	painter->drawRect(mX1, mY1, scalingRect, scalingRect);
+	painter->drawRect(mX2, mY2, scalingRect, scalingRect);
 }
 
 //void Item::drawFieldForResizeItem(QPainter* painter)
