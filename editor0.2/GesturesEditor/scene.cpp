@@ -2,6 +2,7 @@
 
 Scene::Scene() {
 	this->mItemType = none;
+	this->mCount = 0;
 }
 
 void Scene::drawLine(bool checked) {
@@ -46,9 +47,15 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 		this->addItem(this->mRect);
 		break;
 	case arc:
-		this->mArc = new Arc(x1, y1, x1, y1);
-		this->mArc->setVisible(true);
-		this->addItem(this->mArc);
+		this->mCount++;
+		if (mCount == 1) {
+			this->mArc = new Arc(x1, y1, x1, y1, x1, y1);
+			this->mArc->setVisible(true);
+			this->addItem(this->mArc);
+		}
+		if (mCount == 3) {
+			this->mCount = 0;
+		}
 		break;
 	case line:
 		this->mLine = new Line(x1, y1, x1, y1);
@@ -70,7 +77,13 @@ void Scene::mouseMoveEvent( QGraphicsSceneMouseEvent *event) {
 		this->reshapeRect(event);
 		break;
 	case arc:
-		this->reshapeArc(event);
+		if (mCount == 1) {
+			this->reshapeArc1(event);
+		}
+		if (mCount == 2) {
+			this->reshapeArc2(event);
+			this->mCount = 0;
+		}
 		break;
 	case line:
 		this->reshapeLine(event);
@@ -80,8 +93,13 @@ void Scene::mouseMoveEvent( QGraphicsSceneMouseEvent *event) {
 	}
 }
 
+<<<<<<< HEAD
 void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mouseReleaseEvent(event);
+=======
+void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
+	QGraphicsScene::mouseMoveEvent(event);
+>>>>>>> 37b071db91f9b532a0f6e7ccb148804f5f9907aa
 	switch (mItemType) {
 	case ellipse:
 		this->reshapeEllipse(event);
@@ -90,7 +108,12 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 		this->reshapeRect(event);
 		break;
 	case arc:
-		this->reshapeArc(event);
+		if (mCount == 1) {
+			this->reshapeArc1(event);
+		}
+		if (mCount == 2) {
+			this->reshapeArc2(event);
+		}
 		break;
 	 case line:
 		this->reshapeLine(event);
@@ -123,9 +146,16 @@ void Scene::reshapeEllipse(QGraphicsSceneMouseEvent *event) {
 	invalidate();
 }
 
-void Scene::reshapeArc(QGraphicsSceneMouseEvent *event) {
+void Scene::reshapeArc1(QGraphicsSceneMouseEvent *event) {
 	int x2 = event->scenePos().x();
 	int y2 = event->scenePos().y();
 	this->mArc->setX2andY2(x2, y2);
+	invalidate();
+}
+
+void Scene::reshapeArc2(QGraphicsSceneMouseEvent *event) {
+	int x3 = event->scenePos().x();
+	int y3 = event->scenePos().y();
+	this->mArc->setCXandCY(x3, y3);
 	invalidate();
 }
