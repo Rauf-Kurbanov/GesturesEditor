@@ -32,11 +32,13 @@ private:
 	void reshapeLine(QGraphicsSceneMouseEvent *event);
 	void reshapeRect(QGraphicsSceneMouseEvent *event);
 	void reshapeEllipse(QGraphicsSceneMouseEvent *event);
-	void reshapeArc(QGraphicsSceneMouseEvent *event);
+	void reshapeArc1(QGraphicsSceneMouseEvent *event);
+	void reshapeArc2(QGraphicsSceneMouseEvent *event);
 
 	Line *mLine;
 	Rectangle *mRect;
 	Ellipse *mEllipse;
 	Arc *mArc;
+	int mCount;
 };
 
