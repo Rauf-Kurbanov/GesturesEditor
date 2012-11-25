@@ -93,13 +93,8 @@ void Scene::mouseMoveEvent( QGraphicsSceneMouseEvent *event) {
 	}
 }
 
-<<<<<<< HEAD
 void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mouseReleaseEvent(event);
-=======
-void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-	QGraphicsScene::mouseMoveEvent(event);
->>>>>>> 37b071db91f9b532a0f6e7ccb148804f5f9907aa
 	switch (mItemType) {
 	case ellipse:
 		this->reshapeEllipse(event);
