@@ -20,9 +20,7 @@ void Line::drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
 void Line::drawScalingRects(QPainter* painter)
 {
-	QBrush brush(Qt::SolidPattern);
-	brush.setColor(Qt::lightGray);
-	painter->setBrush(brush);
+	painter->setBrush(this->mBrush);
 	if (mX2 >= mX1) {
 		if (mY2 >= mY1) {
 			QRectF leftScalRect = QRectF(QPoint(mX1 - scalingRect, mY1), QPoint(mX1, mY1 - scalingRect));
@@ -32,6 +30,18 @@ void Line::drawScalingRects(QPainter* painter)
 		} else {
 			QRectF leftScalRect = QRectF(QPoint(mX1 - scalingRect, mY1), QPoint(mX1, mY1 + scalingRect));
 			QRectF rightScalRect = QRectF(QPoint(mX2, mY2 - scalingRect), QPoint(mX2 + scalingRect, mY2));
+			painter->drawRect(leftScalRect);
+			painter->drawRect(rightScalRect);
+		}
+	} else {
+		if (mY2 <= mY1) {
+			QRectF leftScalRect = QRectF(QPoint(mX2 - scalingRect, mY2 - scalingRect), QPoint(mX2, mY2));
+			QRectF rightScalRect = QRectF(QPoint(mX1, mY1), QPoint(mX1 + scalingRect, mY1 + scalingRect));
+			painter->drawRect(leftScalRect);
+			painter->drawRect(rightScalRect);
+		} else {
+			QRectF leftScalRect = QRectF(QPoint(mX2 - scalingRect, mY2), QPoint(mX2, mY2 + scalingRect));
+			QRectF rightScalRect = QRectF(QPoint(mX1, mY1 - scalingRect), QPoint(mX1 + scalingRect, mY1));
 			painter->drawRect(leftScalRect);
 			painter->drawRect(rightScalRect);
 		}

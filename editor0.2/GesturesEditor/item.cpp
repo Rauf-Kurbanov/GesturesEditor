@@ -10,6 +10,7 @@ Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 	setFlag(QGraphicsItem::ItemIsMovable, true);
 	this->mPen = QPen(Qt::darkGray, 3, Qt::SolidLine, Qt::RoundCap);
 	this->mBrush = QBrush(Qt::SolidPattern);
+	this->mBrush.setColor(Qt::red);
 	QPoint topLeft = QPoint(this->mX1, this->mY1);
 	QPoint bottomRight = QPoint(this->mX2, this->mY2);
 	this->mBoundingRect = QRectF(topLeft, bottomRight);
