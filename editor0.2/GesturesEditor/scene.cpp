@@ -67,7 +67,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	}
 }
 
-void Scene::mouseMoveEvent( QGraphicsSceneMouseEvent *event) {
+void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mouseMoveEvent(event);
 	switch (mItemType) {
 	case ellipse:
