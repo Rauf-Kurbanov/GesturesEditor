@@ -20,7 +20,6 @@ public:
 
 signals:
 	void resetHighlightAllButtons();
-
 private:
 	enum ItemTypes {
 		none

@@ -4,7 +4,7 @@
 //const int drift = 15;
 //const int resizeDrift = 10;
 //const int scalingDrift = 10;
-//const int scalingRect = 6;
+const int scalingRect = 7;
 
 class Item : public QGraphicsItem
 {
@@ -16,8 +16,8 @@ public:
 
 	virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
 	virtual void drawItem(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) = 0;
+	virtual void drawScalingRects(QPainter* painter);
 //	virtual void drawFieldForResizeItem(QPainter* painter);
-//	virtual void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
 
 protected:
 	QRectF mBoundingRect;
