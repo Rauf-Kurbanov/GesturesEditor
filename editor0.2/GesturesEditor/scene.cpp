@@ -108,16 +108,17 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 		if (mCount == 2) {
 			this->reshapeArc2(event);
 			this->mCount = 0;
+			emit resetHighlightAllButtons();
 		}
 		break;
 	 case line:
 		this->reshapeLine(event);
 		break;
-	default:
-		mItemType = none;
 	}
-//	mItemType = none;
-//	emit resetHighlightAllButtons(); //wtf?
+
+	if (mItemType != arc) {
+		emit resetHighlightAllButtons();
+	}
 }
 
 void Scene::reshapeLine(QGraphicsSceneMouseEvent *event) {

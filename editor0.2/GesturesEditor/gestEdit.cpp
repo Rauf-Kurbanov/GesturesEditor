@@ -17,6 +17,8 @@ GestEdit::GestEdit(QWidget *parent) :
 	connect(mUi->drawEllipseButton, SIGNAL(clicked(bool)), this, SLOT(drawEllipse(bool)));
 	connect(mUi->drawArcButton, SIGNAL(clicked(bool)), this, SLOT(drawArc(bool)));
 	connect(mUi->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
+
+	connect(mScene, SIGNAL(resetHighlightAllButtons()), this, SLOT(resetHighlightAllButtons()));
 }
 
 void GestEdit::initButtonGroup()
