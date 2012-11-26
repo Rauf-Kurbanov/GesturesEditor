@@ -8,6 +8,8 @@
 
 class Scene : public QGraphicsScene
 {
+	Q_OBJECT
+
 public:
 	Scene();
 	void drawLine(bool checked);
