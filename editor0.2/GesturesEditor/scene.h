@@ -5,6 +5,7 @@
 #include "arc.h"
 #include "rectangle.h"
 #include "ellipse.h"
+#include "../../qrutils/graphicsUtils/abstractScene.h"
 
 class Scene : public QGraphicsScene
 {
@@ -44,5 +45,6 @@ private:
 	Ellipse *mEllipse;
 	Arc *mArc;
 	int mCount;
+	bool mWaitMove;
 };
 
