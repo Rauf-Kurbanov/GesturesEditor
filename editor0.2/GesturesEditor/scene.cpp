@@ -3,6 +3,7 @@
 Scene::Scene() {
 	this->mItemType = none;
 	this->mCount = 0;
+	this->mGraphicsItem = NULL;
 }
 
 void Scene::drawLine(bool checked) {
@@ -35,6 +36,10 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mousePressEvent(event);
 	int x1 = event->scenePos().x();
 	int y1 = event->scenePos().y();
+	this->mGraphicsItem = dynamic_cast<Item *>(this->itemAt(x1, y1));
+	if (mGraphicsItem != NULL) {
+		this->forPressResize(event);
+	};
 	switch (mItemType) {
 	case ellipse:
 		this->mEllipse = new Ellipse(x1, y1, x1, y1);
@@ -47,12 +52,15 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 		this->addItem(this->mRect);
 		break;
 	case arc:
+		// arc draws when mouse is pressed
 		this->mCount++;
+		// sets first point
 		if (mCount == 1) {
 			this->mArc = new Arc(x1, y1, x1, y1, x1, y1);
 			this->mArc->setVisible(true);
 			this->addItem(this->mArc);
 		}
+		// arc drawing end
 		if (mCount == 3) {
 			this->mCount = 0;
 		}
@@ -111,8 +119,10 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 			emit resetHighlightAllButtons();
 		}
 		break;
-	 case line:
+	case line:
 		this->reshapeLine(event);
+		break;
+	default:
 		break;
 	}
 
@@ -155,3 +165,30 @@ void Scene::reshapeArc2(QGraphicsSceneMouseEvent *event) {
 	this->mArc->setCXandCY(x3, y3);
 	invalidate();
 }
+
+void Scene::forPressResize(QGraphicsSceneMouseEvent *event)
+{
+	this->addRect(QRectF(10,20,40,40));
+	mGraphicsItem->changeDragState(event->scenePos().x(), event->scenePos().y());
+}
+
+void Scene::reshapeItem(QGraphicsSceneMouseEvent *event)
+{
+	if (mGraphicsItem != NULL) {
+		mGraphicsItem->resizeItem(event);
+	}
+}
+
+void Scene::forMoveResize(QGraphicsSceneMouseEvent *event)
+{
+	reshapeItem(event);
+	this->update();
+}
+
+void Scene::forReleaseResize(QGraphicsSceneMouseEvent * event )
+{
+	this->reshapeItem(event);
+	mGraphicsItem = NULL;
+	this->update();
+}
+

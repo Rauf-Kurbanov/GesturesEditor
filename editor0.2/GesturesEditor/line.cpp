@@ -48,4 +48,9 @@ void Line::drawScalingRects(QPainter* painter)
 	}
 }
 
+void Line::resizeItem(QGraphicsSceneMouseEvent *event)
+{
+	if (mDragState == TopLeft || mDragState == BottomRight)
+		Item::resizeItem(event);
+}
 
