@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QtGui>
+#include <QGraphicsLineItem>
+
 #include "item.h"
 
 class Line : public Item

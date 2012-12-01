@@ -36,14 +36,15 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mousePressEvent(event);
 	int x1 = event->scenePos().x();
 	int y1 = event->scenePos().y();
-	this->mGraphicsItem = dynamic_cast<Item *>(this->itemAt(x1, y1));
-	if (mGraphicsItem != NULL) {
-		this->forPressResize(event);
-	};
+	if (this->itemAt(event->scenePos()) == NULL)
+		qDebug() << "element is null" << event->scenePos();
+//	foreach (QGraphicsItem *item, this->items()) {
+//		qDebug() << "items scene pos" << item->pos();
+//	}
+	qDebug() << "items number" << this->items().count();
 	switch (mItemType) {
 	case ellipse:
 		this->mEllipse = new Ellipse(x1, y1, x1, y1);
-		this->mEllipse->setVisible(true);
 		this->addItem(this->mEllipse);
 		break;
 	case rectangle:
@@ -57,7 +58,6 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 		// sets first point
 		if (mCount == 1) {
 			this->mArc = new Arc(x1, y1, x1, y1, x1, y1);
-			this->mArc->setVisible(true);
 			this->addItem(this->mArc);
 		}
 		// arc drawing end
@@ -67,10 +67,14 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 		break;
 	case line:
 		this->mLine = new Line(x1, y1, x1, y1);
-		this->mLine->setVisible(true);
-		this->addItem(this->mLine);
+//		this->mLine = new Line(x1, y1, x1 + 100, y1 + 100);
+		this->addItem(mLine);
 		break;
-	default:
+	case none:
+		this->mGraphicsItem = dynamic_cast<Item *>(this->itemAt(event->scenePos()));
+		if (mGraphicsItem != NULL) {
+			this->forPressResize(event);
+		};
 		break;
 	}
 }
@@ -136,6 +140,7 @@ void Scene::reshapeLine(QGraphicsSceneMouseEvent *event) {
 	int y2 = event->scenePos().y();
 	this->mLine->setX2andY2(x2, y2);
 	invalidate();
+	update();
 }
 
 void Scene::reshapeRect(QGraphicsSceneMouseEvent *event) {
@@ -168,7 +173,6 @@ void Scene::reshapeArc2(QGraphicsSceneMouseEvent *event) {
 
 void Scene::forPressResize(QGraphicsSceneMouseEvent *event)
 {
-	this->addRect(QRectF(10,20,40,40));
 	mGraphicsItem->changeDragState(event->scenePos().x(), event->scenePos().y());
 }
 

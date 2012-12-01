@@ -24,6 +24,7 @@ public:
 	void setX2andY1(qreal x, qreal y);
 
 
+	virtual void modifyBoundingRect();
 	virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
 	virtual void drawItem(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) = 0;
 	virtual void drawScalingRects(QPainter* painter);
