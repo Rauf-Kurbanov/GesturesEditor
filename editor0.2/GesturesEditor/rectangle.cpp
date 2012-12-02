@@ -5,7 +5,9 @@ Rectangle::Rectangle(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *pare
 }
 
 QRectF Rectangle::boundingRect() const {
-	return this->mBoundingRect;
+	QPoint topLeft = QPoint(this->mX1, this->mY1);
+	QPoint bottomRight = QPoint(this->mX2, this->mY2);
+	return QRectF(topLeft, bottomRight);
 }
 
 void Rectangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
