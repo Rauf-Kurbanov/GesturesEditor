@@ -7,7 +7,9 @@ Arc::Arc(qreal x1, qreal y1, qreal x2, qreal y2, qreal x3, qreal y3, QGraphicsIt
 }
 
 QRectF Arc::boundingRect() const {
-	return this->mBoundingRect;
+	QPoint topLeft = QPoint(this->mX1, this->mY1);
+	QPoint bottomRight = QPoint(this->mX2, this->mY2);
+	return QRectF(topLeft, bottomRight);
 }
 
 void Arc::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {

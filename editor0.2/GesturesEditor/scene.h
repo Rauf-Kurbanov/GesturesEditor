@@ -50,5 +50,6 @@ private:
 	Ellipse *mEllipse;
 	Arc *mArc;
 	int mCount;
+	static const double delta = 0.01;
 };
 

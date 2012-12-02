@@ -7,7 +7,9 @@ Line::Line(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 }
 
 QRectF Line::boundingRect() const {
-	return this->mBoundingRect;
+	QPoint topLeft = QPoint(this->mX1, this->mY1);
+	QPoint bottomRight = QPoint(this->mX2, this->mY2);
+	return QRectF(topLeft, bottomRight);
 }
 
 void Line::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {

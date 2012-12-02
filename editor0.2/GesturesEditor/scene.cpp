@@ -36,20 +36,19 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mousePressEvent(event);
 	int x1 = event->scenePos().x();
 	int y1 = event->scenePos().y();
-	if (this->itemAt(event->scenePos()) == NULL)
-		qDebug() << "element is null" << event->scenePos();
-//	foreach (QGraphicsItem *item, this->items()) {
-//		qDebug() << "items scene pos" << item->pos();
-//	}
-	qDebug() << "items number" << this->items().count();
+//	if (this->itemAt(event->scenePos()) == NULL)
+//		qDebug() << "element is null" << event->scenePos();
+////	foreach (QGraphicsItem *item, this->items()) {
+////		qDebug() << "items scene pos" << item->pos();
+////	}
+//	qDebug() << "items number" << this->items().count();
 	switch (mItemType) {
 	case ellipse:
-		this->mEllipse = new Ellipse(x1, y1, x1, y1);
+		this->mEllipse = new Ellipse(x1, y1, x1 + delta, y1 + delta);
 		this->addItem(this->mEllipse);
 		break;
 	case rectangle:
-		this->mRect = new Rectangle(x1, y1, x1, y1);
-		this->mRect->setVisible(true);
+		this->mRect = new Rectangle(x1, y1, x1 + delta, y1 + delta);
 		this->addItem(this->mRect);
 		break;
 	case arc:
@@ -66,14 +65,15 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 		}
 		break;
 	case line:
-		this->mLine = new Line(x1, y1, x1, y1);
-//		this->mLine = new Line(x1, y1, x1 + 100, y1 + 100);
+		this->mLine = new Line(x1, y1, x1 + delta, y1 + delta);
 		this->addItem(mLine);
 		break;
 	case none:
 		this->mGraphicsItem = dynamic_cast<Item *>(this->itemAt(event->scenePos()));
+		// drag or reshape
 		if (mGraphicsItem != NULL) {
 			this->forPressResize(event);
+			this->reshapeItem(event);
 		};
 		break;
 	}
@@ -140,7 +140,6 @@ void Scene::reshapeLine(QGraphicsSceneMouseEvent *event) {
 	int y2 = event->scenePos().y();
 	this->mLine->setX2andY2(x2, y2);
 	invalidate();
-	update();
 }
 
 void Scene::reshapeRect(QGraphicsSceneMouseEvent *event) {
@@ -157,6 +156,7 @@ void Scene::reshapeEllipse(QGraphicsSceneMouseEvent *event) {
 	invalidate();
 }
 
+// sets arc's position
 void Scene::reshapeArc1(QGraphicsSceneMouseEvent *event) {
 	int x2 = event->scenePos().x();
 	int y2 = event->scenePos().y();
@@ -164,6 +164,7 @@ void Scene::reshapeArc1(QGraphicsSceneMouseEvent *event) {
 	invalidate();
 }
 
+// sets arc's curvation
 void Scene::reshapeArc2(QGraphicsSceneMouseEvent *event) {
 	int x3 = event->scenePos().x();
 	int y3 = event->scenePos().y();

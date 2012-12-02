@@ -23,8 +23,6 @@ public:
 	void setX1andY2(qreal x, qreal y);
 	void setX2andY1(qreal x, qreal y);
 
-
-	virtual void modifyBoundingRect();
 	virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0);
 	virtual void drawItem(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) = 0;
 	virtual void drawScalingRects(QPainter* painter);
@@ -35,7 +33,6 @@ public:
 
 protected:
 	DragState mDragState;
-	QRectF mBoundingRect;
 	QPen mPen;
 	QBrush mBrush;
 	qreal mX1;
