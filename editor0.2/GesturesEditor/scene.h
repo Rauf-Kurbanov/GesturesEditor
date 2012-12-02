@@ -5,7 +5,7 @@
 #include "arc.h"
 #include "rectangle.h"
 #include "ellipse.h"
-#include "../../qrutils/graphicsUtils/abstractScene.h"
+//#include "../../qrutils/graphicsUtils/abstractScene.h"
 
 class Scene : public QGraphicsScene
 {
