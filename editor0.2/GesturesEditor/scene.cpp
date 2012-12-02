@@ -3,6 +3,7 @@
 Scene::Scene() {
 	this->mItemType = none;
 	this->mCount = 0;
+	this->mGraphicsItem = NULL;
 }
 
 void Scene::drawLine(bool checked) {
@@ -35,34 +36,46 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mousePressEvent(event);
 	int x1 = event->scenePos().x();
 	int y1 = event->scenePos().y();
+//	if (this->itemAt(event->scenePos()) == NULL)
+//		qDebug() << "element is null" << event->scenePos();
+////	foreach (QGraphicsItem *item, this->items()) {
+////		qDebug() << "items scene pos" << item->pos();
+////	}
+//	qDebug() << "items number" << this->items().count();
 	switch (mItemType) {
 	case ellipse:
-		this->mEllipse = new Ellipse(x1, y1, x1, y1);
-		this->mEllipse->setVisible(true);
+		this->mEllipse = new Ellipse(x1, y1, x1 + delta, y1 + delta);
 		this->addItem(this->mEllipse);
 		break;
 	case rectangle:
-		this->mRect = new Rectangle(x1, y1, x1, y1);
-		this->mRect->setVisible(true);
+		this->mRect = new Rectangle(x1, y1, x1 + delta, y1 + delta);
 		this->addItem(this->mRect);
 		break;
 	case arc:
+		// arc draws when mouse is pressed
 		this->mCount++;
+		// sets first point
 		if (mCount == 1) {
 			this->mArc = new Arc(x1, y1, x1, y1, x1, y1);
-			this->mArc->setVisible(true);
 			this->addItem(this->mArc);
 		}
+		// arc drawing end
 		if (mCount == 3) {
 			this->mCount = 0;
+			this->mItemType = none;
 		}
 		break;
 	case line:
-		this->mLine = new Line(x1, y1, x1, y1);
-		this->mLine->setVisible(true);
-		this->addItem(this->mLine);
+		this->mLine = new Line(x1, y1, x1 + delta, y1 + delta);
+		this->addItem(mLine);
 		break;
-	default:
+	case none:
+		this->mGraphicsItem = dynamic_cast<Item *>(this->itemAt(event->scenePos()));
+		// drag or reshape
+		if (mGraphicsItem != NULL) {
+			this->forPressResize(event);
+			this->reshapeItem(event);
+		};
 		break;
 	}
 }
@@ -111,13 +124,16 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 			emit resetHighlightAllButtons();
 		}
 		break;
-	 case line:
+	case line:
 		this->reshapeLine(event);
+		break;
+	default:
 		break;
 	}
 
 	if (mItemType != arc) {
 		emit resetHighlightAllButtons();
+		this->mItemType = none;
 	}
 }
 
@@ -142,6 +158,7 @@ void Scene::reshapeEllipse(QGraphicsSceneMouseEvent *event) {
 	invalidate();
 }
 
+// sets arc's position
 void Scene::reshapeArc1(QGraphicsSceneMouseEvent *event) {
 	int x2 = event->scenePos().x();
 	int y2 = event->scenePos().y();
@@ -149,9 +166,36 @@ void Scene::reshapeArc1(QGraphicsSceneMouseEvent *event) {
 	invalidate();
 }
 
+// sets arc's curvation
 void Scene::reshapeArc2(QGraphicsSceneMouseEvent *event) {
 	int x3 = event->scenePos().x();
 	int y3 = event->scenePos().y();
 	this->mArc->setCXandCY(x3, y3);
 	invalidate();
 }
+
+void Scene::forPressResize(QGraphicsSceneMouseEvent *event)
+{
+	mGraphicsItem->changeDragState(event->scenePos().x(), event->scenePos().y());
+}
+
+void Scene::reshapeItem(QGraphicsSceneMouseEvent *event)
+{
+	if (mGraphicsItem != NULL) {
+		mGraphicsItem->resizeItem(event);
+	}
+}
+
+void Scene::forMoveResize(QGraphicsSceneMouseEvent *event)
+{
+	reshapeItem(event);
+	this->update();
+}
+
+void Scene::forReleaseResize(QGraphicsSceneMouseEvent * event )
+{
+	this->reshapeItem(event);
+	mGraphicsItem = NULL;
+	this->update();
+}
+

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QtGui>
+#include <QGraphicsLineItem>
+
 #include "item.h"
 
 class Line : public Item
@@ -11,6 +13,7 @@ public:
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	virtual void drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	virtual void drawScalingRects(QPainter *painter);
+	virtual void resizeItem(QGraphicsSceneMouseEvent *event);
 	virtual QRectF boundingRect() const;
 };
 
