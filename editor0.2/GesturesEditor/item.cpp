@@ -9,7 +9,7 @@ Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 	this->mY2 = y2;
 	setFlag(QGraphicsItem::ItemIsSelectable, true);
 	setFlag(QGraphicsItem::ItemIsMovable, true);
-	this->mPen = QPen(Qt::darkGray, 3, Qt::SolidLine, Qt::RoundCap);
+	this->mPen = QPen(Qt::darkGray, 2, Qt::SolidLine, Qt::RoundCap);
 	this->mBrush = QBrush(Qt::SolidPattern);
 	this->mDragState = None;
 }

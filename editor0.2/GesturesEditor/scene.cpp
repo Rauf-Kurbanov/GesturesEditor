@@ -62,6 +62,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 		// arc drawing end
 		if (mCount == 3) {
 			this->mCount = 0;
+			this->mItemType = none;
 		}
 		break;
 	case line:
@@ -132,6 +133,7 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 
 	if (mItemType != arc) {
 		emit resetHighlightAllButtons();
+		this->mItemType = none;
 	}
 }
 

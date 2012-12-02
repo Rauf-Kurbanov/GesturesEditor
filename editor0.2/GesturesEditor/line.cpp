@@ -7,9 +7,27 @@ Line::Line(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 }
 
 QRectF Line::boundingRect() const {
-	QPoint topLeft = QPoint(this->mX1, this->mY1);
-	QPoint bottomRight = QPoint(this->mX2, this->mY2);
-	return QRectF(topLeft, bottomRight);
+	if (mX1 <= mX2) {
+		if (mY1 <= mY2) {
+			QPoint topLeft = QPoint(mX1, mY1);
+			QPoint bottomRight = QPoint(mX2, mY2);
+			return QRectF(topLeft, bottomRight);
+		} else {
+			QPoint topLeft = QPoint(mX1, mY2);
+			QPoint bottomRight = QPoint(mX2, mY1);
+			return QRectF(topLeft, bottomRight);
+		}
+	} else {
+		if (mY1 <= mY2) {
+			QPoint topLeft = QPoint(mX2, mY1);
+			QPoint bottomRight = QPoint(mX1, mY2);
+			return QRectF(topLeft, bottomRight);
+		} else {
+			QPoint topLeft = QPoint(mX2, mY2);
+			QPoint bottomRight = QPoint(mX1, mY1);
+			return QRectF(topLeft, bottomRight);
+		}
+	}
 }
 
 void Line::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
