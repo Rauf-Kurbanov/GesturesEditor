@@ -19,9 +19,13 @@ private:
 	Ui::GestEdit *mUi;
 	Scene *mScene;
 	QList<QAbstractButton *> mButtonGroup;
+	qreal mX1;
+	qreal mX2;
+	qreal mY1;
+	qreal mY2;
 
-	static const int height = 400;
-	static const int width = 525;
+	static const int height = 340;
+	static const int width = 450;
 
 	void initButtonGroup();
 	void setHighlightOneButton(QAbstractButton *oneButton);
