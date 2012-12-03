@@ -43,6 +43,7 @@ private:
 	void reshapeArc2(QGraphicsSceneMouseEvent *event);
 //	void setX2andY2(QGraphicsSceneMouseEvent *event);
 	void reshapeItem(QGraphicsSceneMouseEvent *event);
+	void forbidMove();
 
 	Item *mGraphicsItem;
 	Line *mLine;

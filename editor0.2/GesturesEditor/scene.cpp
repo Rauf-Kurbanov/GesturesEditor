@@ -7,41 +7,42 @@ Scene::Scene() {
 }
 
 void Scene::drawLine(bool checked) {
-	if (checked)
+	if (checked) {
 		mItemType = line;
+		forbidMove();
+	}
 }
 
 void Scene::drawRect(bool checked) {
-	if (checked)
+	if (checked) {
 		mItemType = rectangle;
+		forbidMove();
+	}
 }
 
 void Scene::drawEllipse(bool checked) {
-	if (checked)
+	if (checked) {
 		mItemType = ellipse;
+		forbidMove();
+	}
 }
 
 void Scene::drawArc(bool checked) {
-	if (checked)
+	if (checked) {
 		mItemType = arc;
+		forbidMove();
+	}
 }
 
 void Scene::addNone(bool checked) {
-	if (checked) {
+	if (checked)
 		mItemType = none;
-	}
 }
 
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mousePressEvent(event);
 	int x1 = event->scenePos().x();
 	int y1 = event->scenePos().y();
-//	if (this->itemAt(event->scenePos()) == NULL)
-//		qDebug() << "element is null" << event->scenePos();
-////	foreach (QGraphicsItem *item, this->items()) {
-////		qDebug() << "items scene pos" << item->pos();
-////	}
-//	qDebug() << "items number" << this->items().count();
 	switch (mItemType) {
 	case ellipse:
 		this->mEllipse = new Ellipse(x1, y1, x1 + delta, y1 + delta);
@@ -70,14 +71,15 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 		this->addItem(mLine);
 		break;
 	case none:
-		this->mGraphicsItem = dynamic_cast<Item *>(this->itemAt(event->scenePos()));
-		// drag or reshape
-		if (mGraphicsItem != NULL) {
-			this->forPressResize(event);
-			this->reshapeItem(event);
-		};
-		break;
+		if (mGraphicsItem != dynamic_cast<Item *>(this->itemAt(event->scenePos()))
+				&& dynamic_cast<Item *>(this->itemAt(event->scenePos())) != NULL) {
+			forbidMove();
+			mGraphicsItem = dynamic_cast<Item *>(this->itemAt(event->scenePos()));
+			mGraphicsItem->setFlag(QGraphicsItem::ItemIsMovable, true);
+		}
+			break;
 	}
+	qDebug() << "items number" << this->items().count();
 }
 
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
@@ -101,6 +103,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 		this->reshapeLine(event);
 		break;
 	case none:
+		invalidate();
 		break;
 	}
 }
@@ -127,7 +130,8 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 	case line:
 		this->reshapeLine(event);
 		break;
-	default:
+	case none:
+		invalidate();
 		break;
 	}
 
@@ -195,7 +199,12 @@ void Scene::forMoveResize(QGraphicsSceneMouseEvent *event)
 void Scene::forReleaseResize(QGraphicsSceneMouseEvent * event )
 {
 	this->reshapeItem(event);
-	mGraphicsItem = NULL;
 	this->update();
+}
+
+void Scene::forbidMove() {
+	if (mGraphicsItem != NULL) {
+		mGraphicsItem->setFlag(QGraphicsItem::ItemIsMovable, false);
+	}
 }
 
