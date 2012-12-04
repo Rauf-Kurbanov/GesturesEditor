@@ -9,6 +9,7 @@ Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 	this->mY2 = y2;
 	this->mPen = QPen(Qt::darkGray, 2, Qt::SolidLine, Qt::RoundCap);
 	this->mBrush = QBrush(Qt::SolidPattern);
+	this->mBrush.setColor(Qt::black);
 	this->mDragState = None;
 	setFlag(QGraphicsItem::ItemIsSelectable, true);
 }
@@ -79,7 +80,6 @@ void Item::changeDragState(qreal x, qreal y)
 //		mDragState = BottomLeft;
 //	else
 //		mDragState = None;
-	this->mPen.setColor(Qt::green);
 }
 
 void Item::calcResizeItem(QGraphicsSceneMouseEvent *event)
