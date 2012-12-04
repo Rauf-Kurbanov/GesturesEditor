@@ -11,10 +11,11 @@ QRectF Rectangle::boundingRect() const {
 }
 
 void Rectangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-	painter->setPen(this->mPen);
-	this->drawItem(painter, option, widget);
 	if (this->isSelected()) {
 		this->drawScalingRects(painter);
+	} else {
+		painter->setPen(this->mPen);
+		this->drawItem(painter, option, widget);
 	}
 }
 
@@ -26,6 +27,6 @@ void Rectangle::drawItem(QPainter *painter, const QStyleOptionGraphicsItem *opti
 }
 
 void Rectangle::drawScalingRects(QPainter *painter) {
-	painter->setPen(QPen(Qt::lightGray, 1, Qt::DashLine, Qt::RoundCap));
+	painter->setPen(QPen(Qt::darkGray, 1, Qt::DashLine, Qt::RoundCap));
 	painter->drawRect(this->boundingRect());
 }
