@@ -17,6 +17,7 @@ GestEdit::GestEdit(QWidget *parent) :
 	connect(mUi->drawEllipseButton, SIGNAL(clicked(bool)), this, SLOT(drawEllipse(bool)));
 	connect(mUi->drawArcButton, SIGNAL(clicked(bool)), this, SLOT(drawArc(bool)));
 	connect(mUi->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
+	connect(mUi->deleteItemButton, SIGNAL(clicked()), this, SLOT(deleteItem()));
 	connect(mUi->openButton, SIGNAL(clicked()), this, SLOT(open()));
 	connect(mUi->saveButton, SIGNAL(clicked()), this, SLOT(save()));
 
@@ -77,6 +78,11 @@ void GestEdit::drawArc(bool checked)
 
 void GestEdit::clear() {
 	mScene->refresh();
+	mScene->invalidate();
+}
+
+void GestEdit::deleteItem() {
+	mScene->deleteSelectedItem();
 	mScene->invalidate();
 }
 

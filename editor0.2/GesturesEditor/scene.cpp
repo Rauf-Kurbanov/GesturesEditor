@@ -9,8 +9,6 @@ Scene::Scene() {
 void Scene::drawLine(bool checked) {
 	if (checked) {
 		mItemType = line;
-//		stateMove();
-//		stateSelection();
 	}
 }
 
@@ -63,7 +61,6 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	case line:
 		this->mLine = new Line(x1, y1, x1 + delta, y1 + delta);
 		this->addItem(mLine);
-		qDebug() << "line added";
 		break;
 	case none:
 		mGraphicsItem = dynamic_cast<Item *>(this->itemAt(event->scenePos()));
@@ -211,6 +208,7 @@ void Scene::stateSelection() {
 	if (mItemType != none) {
 		foreach (QGraphicsItem *item, this->items()) {
 			item->setFlag(QGraphicsItem::ItemIsSelectable, false);
+			mGraphicsItem = NULL;
 		}
 	} else {
 		foreach (QGraphicsItem *item, this->items()) {
@@ -222,7 +220,11 @@ void Scene::stateSelection() {
 void Scene::refresh() {
 	foreach (QGraphicsItem *item, this->items()) {
 		this->removeItem(item);
-		qDebug() << "item removed";
 	}
 }
 
+void Scene::deleteSelectedItem() {
+	if (mGraphicsItem != NULL) {
+		this->removeItem(mGraphicsItem);
+	}
+}
