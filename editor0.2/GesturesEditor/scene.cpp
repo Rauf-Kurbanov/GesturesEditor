@@ -9,28 +9,26 @@ Scene::Scene() {
 void Scene::drawLine(bool checked) {
 	if (checked) {
 		mItemType = line;
-		forbidMove();
+//		stateMove();
+//		stateSelection();
 	}
 }
 
 void Scene::drawRect(bool checked) {
 	if (checked) {
 		mItemType = rectangle;
-		forbidMove();
 	}
 }
 
 void Scene::drawEllipse(bool checked) {
 	if (checked) {
 		mItemType = ellipse;
-		forbidMove();
 	}
 }
 
 void Scene::drawArc(bool checked) {
 	if (checked) {
 		mItemType = arc;
-		forbidMove();
 	}
 }
 
@@ -41,6 +39,8 @@ void Scene::addNone(bool checked) {
 
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	QGraphicsScene::mousePressEvent(event);
+	stateSelection();
+	stateMove();
 	int x1 = event->scenePos().x();
 	int y1 = event->scenePos().y();
 	switch (mItemType) {
@@ -55,28 +55,18 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	case arc:
 		// arc draws when mouse is pressed
 		this->mCount++;
-		// sets first point
 		if (mCount == 1) {
 			this->mArc = new Arc(x1, y1, x1, y1, x1, y1);
 			this->addItem(this->mArc);
-		}
-		// arc drawing end
-		if (mCount == 3) {
-			this->mCount = 0;
-			this->mItemType = none;
 		}
 		break;
 	case line:
 		this->mLine = new Line(x1, y1, x1 + delta, y1 + delta);
 		this->addItem(mLine);
+		qDebug() << "line added";
 		break;
 	case none:
-		if (mGraphicsItem != dynamic_cast<Item *>(this->itemAt(event->scenePos()))
-				&& dynamic_cast<Item *>(this->itemAt(event->scenePos())) != NULL) {
-			forbidMove();
-			mGraphicsItem = dynamic_cast<Item *>(this->itemAt(event->scenePos()));
-			mGraphicsItem->setFlag(QGraphicsItem::ItemIsMovable, true);
-		}
+		mGraphicsItem = dynamic_cast<Item *>(this->itemAt(event->scenePos()));
 			break;
 	}
 	qDebug() << "items number" << this->items().count();
@@ -123,7 +113,9 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 		}
 		if (mCount == 2) {
 			this->reshapeArc2(event);
-			this->mCount = 0;
+			mCount = 0;
+			this->mItemType = none;
+			this->stateMove();
 			emit resetHighlightAllButtons();
 		}
 		break;
@@ -135,6 +127,7 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 		break;
 	}
 
+	// because of 2-step arc drawing
 	if (mItemType != arc) {
 		emit resetHighlightAllButtons();
 		this->mItemType = none;
@@ -202,9 +195,34 @@ void Scene::forReleaseResize(QGraphicsSceneMouseEvent * event )
 	this->update();
 }
 
-void Scene::forbidMove() {
-	if (mGraphicsItem != NULL) {
-		mGraphicsItem->setFlag(QGraphicsItem::ItemIsMovable, false);
+void Scene::stateMove() {
+	if (mItemType != none) {
+		foreach (QGraphicsItem *item, this->items()) {
+			item->setFlag(QGraphicsItem::ItemIsMovable, false);
+		}
+	} else {
+		foreach (QGraphicsItem *item, this->items()) {
+			item->setFlag(QGraphicsItem::ItemIsMovable, true);
+		}
+	}
+}
+
+void Scene::stateSelection() {
+	if (mItemType != none) {
+		foreach (QGraphicsItem *item, this->items()) {
+			item->setFlag(QGraphicsItem::ItemIsSelectable, false);
+		}
+	} else {
+		foreach (QGraphicsItem *item, this->items()) {
+			item->setFlag(QGraphicsItem::ItemIsSelectable, true);
+		}
+	}
+}
+
+void Scene::refresh() {
+	foreach (QGraphicsItem *item, this->items()) {
+		this->removeItem(item);
+		qDebug() << "item removed";
 	}
 }
 

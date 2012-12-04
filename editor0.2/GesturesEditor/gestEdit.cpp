@@ -74,7 +74,7 @@ void GestEdit::drawArc(bool checked)
 }
 
 void GestEdit::clear() {
-	mScene->clear();
+	mScene->refresh();
 	mScene->invalidate();
 }
 

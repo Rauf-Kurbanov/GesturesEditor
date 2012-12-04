@@ -10,6 +10,7 @@ Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 	this->mPen = QPen(Qt::darkGray, 2, Qt::SolidLine, Qt::RoundCap);
 	this->mBrush = QBrush(Qt::SolidPattern);
 	this->mDragState = None;
+	setFlag(QGraphicsItem::ItemIsSelectable, true);
 }
 
 QRectF Item::boundingRect() const {
