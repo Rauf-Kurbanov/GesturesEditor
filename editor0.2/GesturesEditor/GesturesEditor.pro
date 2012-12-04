@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     line.cpp \
     rectangle.cpp \
     arc.cpp \
-    ellipse.cpp
+    ellipse.cpp \
+    xmlLoader.cpp
 
 HEADERS  += gestEdit.h \
     scene.h \
@@ -25,6 +26,7 @@ HEADERS  += gestEdit.h \
     line.h \
     rectangle.h \
     arc.h \
-    ellipse.h
+    ellipse.h \
+    xmlLoader.h
 
 FORMS    += gestEdit.ui

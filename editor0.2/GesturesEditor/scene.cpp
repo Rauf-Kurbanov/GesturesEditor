@@ -63,13 +63,13 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	case line:
 		this->mLine = new Line(x1, y1, x1 + delta, y1 + delta);
 		this->addItem(mLine);
-		qDebug() << "line added";
+//		qDebug() << "line added";
 		break;
 	case none:
 		mGraphicsItem = dynamic_cast<Item *>(this->itemAt(event->scenePos()));
 			break;
 	}
-	qDebug() << "items number" << this->items().count();
+//	qDebug() << "items number" << this->items().count();
 }
 
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
@@ -222,7 +222,7 @@ void Scene::stateSelection() {
 void Scene::refresh() {
 	foreach (QGraphicsItem *item, this->items()) {
 		this->removeItem(item);
-		qDebug() << "item removed";
+//		qDebug() << "item removed";
 	}
 }
 

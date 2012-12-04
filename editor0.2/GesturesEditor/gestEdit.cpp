@@ -80,7 +80,14 @@ void GestEdit::clear() {
 	mScene->invalidate();
 }
 
-void GestEdit::open() {}
+void GestEdit::open() {
+	mDocument.clear();
+	QString fileName = QFileDialog::getOpenFileName(this);
+	if (fileName.isEmpty())
+		return;
+	XmlLoader loader(mScene);
+	loader.readFile(fileName);
+}
 
 void GestEdit::save() {}
 
