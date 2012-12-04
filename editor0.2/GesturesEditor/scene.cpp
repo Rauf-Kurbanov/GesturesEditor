@@ -9,24 +9,28 @@ Scene::Scene() {
 void Scene::drawLine(bool checked) {
 	if (checked) {
 		mItemType = line;
+		stateSelection();
 	}
 }
 
 void Scene::drawRect(bool checked) {
 	if (checked) {
 		mItemType = rectangle;
+		stateSelection();
 	}
 }
 
 void Scene::drawEllipse(bool checked) {
 	if (checked) {
 		mItemType = ellipse;
+		stateSelection();
 	}
 }
 
 void Scene::drawArc(bool checked) {
 	if (checked) {
 		mItemType = arc;
+		stateSelection();
 	}
 }
 
