@@ -36,6 +36,8 @@ private slots:
 	void drawEllipse(bool checked);
 	void drawArc(bool checked);
 	void clear();
+	void open();
+	void save();
 	void resetHighlightAllButtons();
 };
 
