@@ -11,11 +11,13 @@ public:
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	virtual void drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	virtual QRectF boundingRect() const;
+	virtual void drawScalingRects(QPainter *painter);
 
 	void  setCXandCY(qreal x, qreal y);
 
 private:
 	QPainterPath *mPath;
-	QPoint mCPoint;
+	qreal mCX;
+	qreal mCY;
 };
 

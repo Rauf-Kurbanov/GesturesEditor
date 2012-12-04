@@ -13,6 +13,9 @@ QRectF Ellipse::boundingRect() const {
 void Ellipse::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
 	painter->setPen(this->mPen);
 	this->drawItem(painter, option, widget);
+	if (this->isSelected()) {
+		this->drawScalingRects(painter);
+	}
 }
 
 void Ellipse::drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -20,5 +23,10 @@ void Ellipse::drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option
 	QPoint bottomRightPoint = QPoint(this->mX2, this->mY2);
 	QRectF rectangleForEllipse = QRectF(topLeftPoint, bottomRightPoint);
 	painter->drawEllipse(rectangleForEllipse);
+}
+
+void Ellipse::drawScalingRects(QPainter *painter) {
+	painter->setPen(QPen(Qt::lightGray, 1, Qt::DashLine, Qt::RoundCap));
+	painter->drawRect(this->boundingRect());
 }
 

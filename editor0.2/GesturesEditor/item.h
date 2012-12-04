@@ -4,7 +4,8 @@
 const int drift = 15;
 const int resizeDrift = 10;
 const int scalingDrift = 10;
-const int scalingRect = 7;
+const int scalingRect = 2;
+const int boundingGap = 2;
 
 class Item : public QGraphicsItem
 {
@@ -29,6 +30,7 @@ public:
 	virtual void resizeItem(QGraphicsSceneMouseEvent *event);
 	virtual void calcResizeItem(QGraphicsSceneMouseEvent *event);
 	virtual void changeDragState(qreal x, qreal y);
+	virtual QRectF boundingRect() const;
 //	virtual void drawFieldForResizeItem(QPainter* painter);
 
 protected:

@@ -7,11 +7,16 @@ Item::Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) :
 	this->mY1 = y1;
 	this->mX2 = x2;
 	this->mY2 = y2;
-	setFlag(QGraphicsItem::ItemIsSelectable, true);
-	setFlag(QGraphicsItem::ItemIsMovable, true);
 	this->mPen = QPen(Qt::darkGray, 2, Qt::SolidLine, Qt::RoundCap);
 	this->mBrush = QBrush(Qt::SolidPattern);
 	this->mDragState = None;
+	setFlag(QGraphicsItem::ItemIsSelectable, true);
+}
+
+QRectF Item::boundingRect() const {
+	QPoint topLeft = QPoint(this->mX1, this->mY1);
+	QPoint bottomRight = QPoint(this->mX2, this->mY2);
+	return QRectF(topLeft, bottomRight);
 }
 
 void Item::setX1andY1(qreal x, qreal y) {
@@ -50,8 +55,7 @@ void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 }
 
 void Item::drawScalingRects(QPainter *painter) {
-//	painter->drawRect(mX1, mY1, scalingRect, scalingRect);
-//	painter->drawRect(mX2, mY2, scalingRect, scalingRect);
+
 }
 
 void Item::resizeItem(QGraphicsSceneMouseEvent *event)
