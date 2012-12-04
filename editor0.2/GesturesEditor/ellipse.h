@@ -10,6 +10,7 @@ public:
 
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	virtual void drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+	virtual void drawScalingRects(QPainter* painter);
 
 	virtual QRectF boundingRect() const;
 };

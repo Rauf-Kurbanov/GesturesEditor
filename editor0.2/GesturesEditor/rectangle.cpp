@@ -13,6 +13,9 @@ QRectF Rectangle::boundingRect() const {
 void Rectangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
 	painter->setPen(this->mPen);
 	this->drawItem(painter, option, widget);
+	if (this->isSelected()) {
+		this->drawScalingRects(painter);
+	}
 }
 
 void Rectangle::drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -20,4 +23,9 @@ void Rectangle::drawItem(QPainter *painter, const QStyleOptionGraphicsItem *opti
 	QPoint bottomRightPoint = QPoint(this->mX2, this->mY2);
 	QRectF rectangle = QRectF(topLeftPoint, bottomRightPoint);
 	painter->drawRect(rectangle);
+}
+
+void Rectangle::drawScalingRects(QPainter *painter) {
+	painter->setPen(QPen(Qt::lightGray, 1, Qt::DashLine, Qt::RoundCap));
+	painter->drawRect(this->boundingRect());
 }

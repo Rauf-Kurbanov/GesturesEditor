@@ -18,6 +18,7 @@ public:
 	void drawEllipse(bool checked);
 	void drawArc(bool checked);
 	void addNone(bool checked);
+	void refresh();
 
 signals:
 	void resetHighlightAllButtons();
@@ -44,6 +45,8 @@ private:
 	void reshapeArc2(QGraphicsSceneMouseEvent *event);
 //	void setX2andY2(QGraphicsSceneMouseEvent *event);
 	void reshapeItem(QGraphicsSceneMouseEvent *event);
+	void stateMove();
+	void stateSelection();
 
 	Item *mGraphicsItem;
 	Line *mLine;
