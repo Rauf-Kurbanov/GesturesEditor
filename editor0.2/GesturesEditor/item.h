@@ -18,6 +18,26 @@ public:
 		BottomLeft,
 		BottomRight
 	};
+
+//	enum DomElementTypes {
+//		noneType,
+//		pictureType,
+//		labelType,
+//		portType
+//	};
+
+	enum ScalingPointState {
+		noneScale,
+		topLeftX,
+		topRightX,
+		bottomLeftX,
+		bottomRightX,
+		topLeftY,
+		topRightY,
+		bottomLeftY,
+		bottomRightY
+	};
+
 	Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent = 0);
 	void setX1andY1(qreal x, qreal y);
 	void setX2andY2(qreal x, qreal y);

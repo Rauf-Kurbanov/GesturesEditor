@@ -2,8 +2,13 @@
 
 #include <QtXml/QDomDocument>
 
-#include "scene.h"
-#include "item.h"
+#include <scene.h>
+#include <item.h>
+#include <parser.h>
+#include "../../qrutils/xmlUtils.h"
+//#include "C:/Users/Maestro/GesturesEditor/editor0.2/qrutils/xmlUtils.h"
+
+const int distanceFigure = 50;
 
 class XmlLoader
 {
@@ -16,7 +21,7 @@ private:
 	QDomDocument mDocument;
 	Scene *mScene;
 	QPoint mDrift;
-//	QList<QPair<Item::ScalingPointState, QColor> > mListScalePoint;
+	QList<QPair<Item::ScalingPointState, QColor> > mListScalePoint;
 	int mStrY;
 	int mStrX;
 	int mFloorY;
@@ -24,5 +29,5 @@ private:
 
 	void initListScalePoint();
 	void readDocument();
-//	void readGraphics(QDomElement const &graphic);
+	void readGraphics(QDomElement const &graphic);
 };
