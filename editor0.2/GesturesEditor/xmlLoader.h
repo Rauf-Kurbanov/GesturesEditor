@@ -4,7 +4,7 @@
 
 #include <scene.h>
 #include <item.h>
-#include <parser.h>
+//#include <parser.h>
 #include "../../qrutils/xmlUtils.h"
 //#include "C:/Users/Maestro/GesturesEditor/editor0.2/qrutils/xmlUtils.h"
 
@@ -30,4 +30,12 @@ private:
 	void initListScalePoint();
 	void readDocument();
 	void readGraphics(QDomElement const &graphic);
+	void readPicture(QDomElement const &picture);
+	void readLabels(QDomElement const &label);
+	void readPorts(QDomElement const &port);
+	void readLine(QDomElement const &line);
+	void readEllipse(QDomElement const &ellipse);
+	void readArch(QDomElement const &arch);
+	void readRectangle(QDomElement const &rectangle);
+	void readCurve(QDomElement const &element);
 };

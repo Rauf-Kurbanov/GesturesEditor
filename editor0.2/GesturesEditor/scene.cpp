@@ -226,3 +226,8 @@ void Scene::refresh() {
 	}
 }
 
+QPoint Scene::centerEmpty()
+{
+	return QPoint(sizeEmptyRectX / 2, sizeEmptyRectY / 2);
+}
+
