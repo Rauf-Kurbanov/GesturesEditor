@@ -66,3 +66,7 @@ void Ellipse::drawScalingRects(QPainter *painter) {
 	painter->drawRect(rightTopScalRect);
 }
 
+void Ellipse::changeDragState(qreal x, qreal y) {
+
+}
+
