@@ -73,7 +73,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 		}
 			break;
 	}
-	qDebug() << "items number" << this->items().count();
+//	qDebug() << "items number" << this->items().count();
 }
 
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
@@ -236,6 +236,7 @@ void Scene::stateSelection() {
 void Scene::refresh() {
 	foreach (QGraphicsItem *item, this->items()) {
 		this->removeItem(item);
+//		qDebug() << "item removed";
 	}
 }
 
@@ -243,4 +244,9 @@ void Scene::deleteSelectedItem() {
 	if (mGraphicsItem != NULL) {
 		this->removeItem(mGraphicsItem);
 	}
+}
+
+QPoint Scene::centerEmpty()
+{
+	return QPoint(sizeEmptyRectX / 2, sizeEmptyRectY / 2);
 }
