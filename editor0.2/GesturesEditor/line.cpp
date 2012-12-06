@@ -46,33 +46,34 @@ void Line::drawScalingRects(QPainter* painter)
 {
 	painter->setPen(QPen(Qt::lightGray, 1, Qt::DashLine, Qt::RoundCap));
 	painter->drawRect(this->boundingRect());
-//	if (mX2 >= mX1) {
-//		if (mY2 >= mY1) {
-//			QRectF leftScalRect = QRectF(QPoint(mX1 - scalingRect, mY1), QPoint(mX1, mY1 - scalingRect));
-//			QRectF rightScalRect = QRectF(QPoint(mX2, mY2 + scalingRect), QPoint(mX2 + scalingRect, mY2));
-//			painter->drawPoint(QPoint(mX1, mY1));
-//			painter->drawPoint(QPoint(mX2, mY2));
-////			painter->drawRect(leftScalRect);
-////			painter->drawRect(rightScalRect);
-//		} else {
-//			QRectF leftScalRect = QRectF(QPoint(mX1 - scalingRect, mY1), QPoint(mX1, mY1 + scalingRect));
-//			QRectF rightScalRect = QRectF(QPoint(mX2, mY2 - scalingRect), QPoint(mX2 + scalingRect, mY2));
-////			painter->drawRect(leftScalRect);
-////			painter->drawRect(rightScalRect);
-//		}
-//	} else {
-//		if (mY2 <= mY1) {
-//			QRectF leftScalRect = QRectF(QPoint(mX2 - scalingRect, mY2 - scalingRect), QPoint(mX2, mY2));
-//			QRectF rightScalRect = QRectF(QPoint(mX1, mY1), QPoint(mX1 + scalingRect, mY1 + scalingRect));
-////			painter->drawRect(leftScalRect);
-////			painter->drawRect(rightScalRect);
-//		} else {
-//			QRectF leftScalRect = QRectF(QPoint(mX2 - scalingRect, mY2), QPoint(mX2, mY2 + scalingRect));
-//			QRectF rightScalRect = QRectF(QPoint(mX1, mY1 - scalingRect), QPoint(mX1 + scalingRect, mY1));
-////			painter->drawRect(leftScalRect);
-////			painter->drawRect(rightScalRect);
-//		}
-//	}
+	painter->setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::RoundCap));
+	painter->setBrush(this->mBrush);
+
+	if (mX2 >= mX1) {
+		if (mY2 >= mY1) {
+			QRectF leftScalRect = QRectF(QPoint(mX1, mY1), QPoint(mX1 + scalingRect, mY1 + scalingRect));
+			QRectF rightScalRect = QRectF(QPoint(mX2 - scalingRect, mY2 - scalingRect), QPoint(mX2, mY2));
+			painter->drawRect(leftScalRect);
+			painter->drawRect(rightScalRect);
+		} else {
+			QRectF leftScalRect = QRectF(QPoint(mX1, mY1 - scalingRect), QPoint(mX1 + scalingRect, mY1));
+			QRectF rightScalRect = QRectF(QPoint(mX2 - scalingRect, mY2), QPoint(mX2 , mY2 + scalingRect));
+			painter->drawRect(leftScalRect);
+			painter->drawRect(rightScalRect);
+		}
+	} else {
+		if (mY2 <= mY1) {
+			QRectF leftScalRect = QRectF(QPoint(mX2, mY2), QPoint(mX2 + scalingRect, mY2 + scalingRect));
+			QRectF rightScalRect = QRectF(QPoint(mX1 - scalingRect, mY1 - scalingRect), QPoint(mX1, mY1));
+			painter->drawRect(leftScalRect);
+			painter->drawRect(rightScalRect);
+		} else {
+			QRectF leftScalRect = QRectF(QPoint(mX2, mY2 - scalingRect), QPoint(mX2 + scalingRect, mY2));
+			QRectF rightScalRect = QRectF(QPoint(mX1 - scalingRect, mY1), QPoint(mX1, mY1 + scalingRect));
+			painter->drawRect(leftScalRect);
+			painter->drawRect(rightScalRect);
+		}
+	}
 
 }
 

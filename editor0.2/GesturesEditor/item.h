@@ -4,8 +4,8 @@
 const int drift = 15;
 const int resizeDrift = 10;
 const int scalingDrift = 10;
-const int scalingRect = 2;
-const int boundingGap = 2;
+const int scalingRect = 6;
+const int boundingGap = 10;
 
 class Item : public QGraphicsItem
 {

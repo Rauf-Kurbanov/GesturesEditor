@@ -22,6 +22,8 @@ public:
 	void drawArc(bool checked);
 	void addNone(bool checked);
 	void refresh();
+	void deleteSelectedItem();
+
 	QPoint centerEmpty();
 
 signals:

@@ -39,6 +39,7 @@ private slots:
 	void drawRect(bool checked);
 	void drawEllipse(bool checked);
 	void drawArc(bool checked);
+	void deleteItem();
 	void clear();
 	void open();
 	void save();
