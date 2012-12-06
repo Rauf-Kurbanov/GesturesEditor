@@ -7,6 +7,9 @@
 #include "ellipse.h"
 //#include "../../qrutils/graphicsUtils/abstractScene.h"
 
+const int sizeEmptyRectX = 680;
+const int sizeEmptyRectY = 580;
+
 class Scene : public QGraphicsScene
 {
 	Q_OBJECT
@@ -20,6 +23,8 @@ public:
 	void addNone(bool checked);
 	void refresh();
 	void deleteSelectedItem();
+
+	QPoint centerEmpty();
 
 signals:
 	void resetHighlightAllButtons();
