@@ -30,6 +30,7 @@ public:
 	virtual void resizeItem(QGraphicsSceneMouseEvent *event);
 	virtual void calcResizeItem(QGraphicsSceneMouseEvent *event);
 	virtual void changeDragState(qreal x, qreal y);
+	virtual void updateScalingRects(QPointF topLeft, QPointF bottomRight);
 	virtual QRectF boundingRect() const;
 //	virtual void drawFieldForResizeItem(QPainter* painter);
 
