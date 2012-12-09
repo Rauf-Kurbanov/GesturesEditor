@@ -28,8 +28,8 @@ private:
 	qreal mY2;
 	QDomDocument mDocument;
 
-	static const int height = 340;
-	static const int width = 450;
+	static const int height =400;
+	static const int width = 500;
 
 	void initButtonGroup();
 	void setHighlightOneButton(QAbstractButton *oneButton);
