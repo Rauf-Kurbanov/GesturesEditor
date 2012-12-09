@@ -12,7 +12,13 @@ public:
 	virtual void drawItem(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	virtual void drawScalingRects(QPainter* painter);
 	virtual void changeDragState(qreal x, qreal y);
-	//virtual void updateScalingRects(QPointF topLeft, QPointF bottomRight);
+	virtual void updateScalingRects(QPointF topLeft, QPointF bottomRight);
 	virtual QRectF boundingRect() const;
+
+private:
+	QRectF leftBottomScalRect;
+	QRectF leftTopScalRect;
+	QRectF rightTopScalRect;
+	QRectF rightBottomScalRect;
 };
 

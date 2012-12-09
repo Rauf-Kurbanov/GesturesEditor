@@ -69,6 +69,8 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 	case none:
 		mGraphicsItem = dynamic_cast<Item *>(this->itemAt(event->scenePos()));
 		if (mGraphicsItem != NULL) {
+			this->mGraphicsItem->updateScalingRects(
+						mGraphicsItem->sceneBoundingRect().topLeft(), mGraphicsItem->sceneBoundingRect().bottomRight());
 			this->forPressResize(event);
 		}
 			break;

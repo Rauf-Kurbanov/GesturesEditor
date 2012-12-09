@@ -16,6 +16,7 @@ public:
 	virtual void updateScalingRects(QPointF topLeft, QPointF bottomRight);
 	virtual QRectF boundingRect() const;
 
+private:
 	QRectF leftBottomScalRect;
 	QRectF leftTopScalRect;
 	QRectF rightTopScalRect;
