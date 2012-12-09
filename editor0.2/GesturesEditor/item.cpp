@@ -47,39 +47,23 @@ void Item::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
 	painter->setPen(mPen);
 	painter->setBrush(mBrush);
 	drawItem(painter, option, widget);
-//	if (option->state & QStyle::State_Selected) {
-//		painter->save();
-//		setPenBrushForExtraxtion(painter, option);
-//		drawExtractionForItem(painter);
-//		painter->restore();
-//	}
 }
 
 void Item::drawScalingRects(QPainter *painter) {
 
 }
 
-void Item::resizeItem(QGraphicsSceneMouseEvent *event)
-{
-	if (mDragState != None)
-		this->calcResizeItem(event);
-	else {
-		this->setFlag(QGraphicsItem::ItemIsMovable, true);
-	}
+void Item::changeDragState(qreal x, qreal y) {
+
 }
 
-void Item::changeDragState(qreal x, qreal y)
+void Item::resizeItem(QGraphicsSceneMouseEvent *event)
 {
-//	if (QRectF(QPointF(mX1 + scenePos().x(), mY1 + scenePos().y()), QSizeF(0, 0)).adjusted(-resizeDrift, -resizeDrift, resizeDrift, resizeDrift).contains(QPointF(x, y)))
-//		mDragState = TopLeft;
-//	else if (QRectF(QPointF(mX2 + scenePos().x(), mY2 + scenePos().y()), QSizeF(0, 0)).adjusted(-resizeDrift, -resizeDrift, resizeDrift, resizeDrift).contains(QPointF(x, y)))
-//		mDragState = BottomRight;
-//	else if (QRectF(QPointF(mX2 + scenePos().x(), mY1 + scenePos().y()), QSizeF(0, 0)).adjusted(-resizeDrift, -resizeDrift, resizeDrift, resizeDrift).contains(QPointF(x, y)))
-//		mDragState = TopRight;
-//	else if (QRectF(QPointF(mX1 + scenePos().x(), mY2 + scenePos().y()), QSizeF(0, 0)).adjusted(-resizeDrift, -resizeDrift, resizeDrift, resizeDrift).contains(QPointF(x, y)))
-//		mDragState = BottomLeft;
-//	else
-//		mDragState = None;
+	if (mDragState != None) {
+		this->calcResizeItem(event);
+	} else {
+		this->setFlag(QGraphicsItem::ItemIsMovable, true);
+	}
 }
 
 void Item::calcResizeItem(QGraphicsSceneMouseEvent *event)
@@ -90,17 +74,18 @@ void Item::calcResizeItem(QGraphicsSceneMouseEvent *event)
 		setFlag(QGraphicsItem::ItemIsMovable, false);
 	if (mDragState == TopLeft) {
 		setX1andY1(x, y);
-	};
-//	else if (mDragState == TopRight) {
-//		setX2andY1(x, y);
-//	} else if (mDragState == BottomLeft) {
-//		setX1andY2(x, y);
-//	} else if (mDragState == BottomRight) {
-//		setX2andY2(x, y);
-//	}
+	} else if (mDragState == TopRight) {
+		setX2andY1(x, y);
+	} else if (mDragState == BottomLeft) {
+		setX1andY2(x, y);
+	} else if (mDragState == BottomRight) {
+		setX2andY2(x, y);
+	}
 }
 
+void Item::updateScalingRects(QPointF topLeft, QPointF bottomRight) {
 
+}
 
 //void Item::drawFieldForResizeItem(QPainter* painter)
 //{

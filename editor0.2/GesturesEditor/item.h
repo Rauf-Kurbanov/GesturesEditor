@@ -18,6 +18,26 @@ public:
 		BottomLeft,
 		BottomRight
 	};
+
+//	enum DomElementTypes {
+//		noneType,
+//		pictureType,
+//		labelType,
+//		portType
+//	};
+
+	enum ScalingPointState {
+		noneScale,
+		topLeftX,
+		topRightX,
+		bottomLeftX,
+		bottomRightX,
+		topLeftY,
+		topRightY,
+		bottomLeftY,
+		bottomRightY
+	};
+
 	Item(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent = 0);
 	void setX1andY1(qreal x, qreal y);
 	void setX2andY2(qreal x, qreal y);
@@ -30,6 +50,7 @@ public:
 	virtual void resizeItem(QGraphicsSceneMouseEvent *event);
 	virtual void calcResizeItem(QGraphicsSceneMouseEvent *event);
 	virtual void changeDragState(qreal x, qreal y);
+	virtual void updateScalingRects(QPointF topLeft, QPointF bottomRight);
 	virtual QRectF boundingRect() const;
 //	virtual void drawFieldForResizeItem(QPainter* painter);
 

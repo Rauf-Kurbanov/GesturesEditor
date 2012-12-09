@@ -1,7 +1,10 @@
 #pragma once
 
+#include <QtXml/QDomDocument>
 #include <QWidget>
+
 #include <scene.h>
+#include<xmlLoader.h>
 
 namespace Ui {
 class GestEdit;
@@ -23,6 +26,7 @@ private:
 	qreal mX2;
 	qreal mY1;
 	qreal mY2;
+	QDomDocument mDocument;
 
 	static const int height = 340;
 	static const int width = 450;

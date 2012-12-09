@@ -68,9 +68,12 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 		break;
 	case none:
 		mGraphicsItem = dynamic_cast<Item *>(this->itemAt(event->scenePos()));
+		if (mGraphicsItem != NULL) {
+			this->forPressResize(event);
+		}
 			break;
 	}
-	qDebug() << "items number" << this->items().count();
+//	qDebug() << "items number" << this->items().count();
 }
 
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
@@ -94,6 +97,11 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 		this->reshapeLine(event);
 		break;
 	case none:
+		if (mGraphicsItem != NULL) {
+			this->mGraphicsItem->updateScalingRects(
+						mGraphicsItem->sceneBoundingRect().topLeft(), mGraphicsItem->sceneBoundingRect().bottomRight());
+		}
+		this->forMoveResize(event);
 		invalidate();
 		break;
 	}
@@ -124,6 +132,7 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 		this->reshapeLine(event);
 		break;
 	case none:
+		this->forReleaseResize(event);
 		invalidate();
 		break;
 	}
@@ -174,6 +183,7 @@ void Scene::reshapeArc2(QGraphicsSceneMouseEvent *event) {
 
 void Scene::forPressResize(QGraphicsSceneMouseEvent *event)
 {
+	qDebug() << "forPressResize";
 	mGraphicsItem->changeDragState(event->scenePos().x(), event->scenePos().y());
 }
 
@@ -186,14 +196,16 @@ void Scene::reshapeItem(QGraphicsSceneMouseEvent *event)
 
 void Scene::forMoveResize(QGraphicsSceneMouseEvent *event)
 {
+	qDebug() << "forMoveResize";
 	reshapeItem(event);
-	this->update();
+	invalidate();
 }
 
 void Scene::forReleaseResize(QGraphicsSceneMouseEvent * event )
 {
-	this->reshapeItem(event);
-	this->update();
+	qDebug() << "forReleaseResize";
+	//this->reshapeItem(event);
+	invalidate();
 }
 
 void Scene::stateMove() {
@@ -224,6 +236,7 @@ void Scene::stateSelection() {
 void Scene::refresh() {
 	foreach (QGraphicsItem *item, this->items()) {
 		this->removeItem(item);
+//		qDebug() << "item removed";
 	}
 }
 
@@ -231,4 +244,9 @@ void Scene::deleteSelectedItem() {
 	if (mGraphicsItem != NULL) {
 		this->removeItem(mGraphicsItem);
 	}
+}
+
+QPoint Scene::centerEmpty()
+{
+	return QPoint(sizeEmptyRectX / 2, sizeEmptyRectY / 2);
 }
