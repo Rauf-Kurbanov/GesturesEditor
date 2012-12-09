@@ -87,16 +87,3 @@ void Item::updateScalingRects(QPointF topLeft, QPointF bottomRight) {
 
 }
 
-//void Item::drawFieldForResizeItem(QPainter* painter)
-//{
-//	QRectF itemBoundingRect = this->mBoundingRect;
-//	qreal x1 = itemBoundingRect.left();
-//	qreal x2 = itemBoundingRect.right();
-//	qreal y1 = itemBoundingRect.top();
-//	qreal y2 = itemBoundingRect.bottom();
-
-//	painter->drawRect(x1, y1, resizeDrift, resizeDrift);
-//	painter->drawRect(x2 - resizeDrift, y2 - resizeDrift, resizeDrift, resizeDrift);
-//	painter->drawRect(x1, y2 - resizeDrift, resizeDrift, resizeDrift);
-//	painter->drawRect(x2 - resizeDrift, y1, resizeDrift, resizeDrift);
-//}
