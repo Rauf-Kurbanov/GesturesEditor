@@ -40,5 +40,7 @@ private:
 	void readCurve(QDomElement const &element);
 	QPair<QPointF, QPointF> readLineOfXandY(QDomElement const &docItem);
 	QPair<QString, bool> readScaleCoord(QString point, QDomElement const &docItem);
-	QPair<QPointF, QPointF> calcLineOfXandY(QPair<QString, bool> pointX1, QPair<QString, bool> pointX2, QPair<QString, bool> pointY1, QPair<QString, bool> pointY2);
+	QPair<QPointF, QPointF> calcLineOfXandY(QPair<QString, bool> pointX1, QPair<QString, bool> pointX2
+			, QPair<QString, bool> pointY1, QPair<QString, bool> pointY2);
+	QRectF readRectOfXandY(QDomElement const &docItem);
 };
