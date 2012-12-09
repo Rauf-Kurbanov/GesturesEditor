@@ -1,4 +1,5 @@
 #include <xmlLoader.h>
+#include "../../qrutils/xmlUtils.h"
 //#include <scene.h>
 
 //#include <QtXml/QDomDocument>
@@ -29,7 +30,7 @@ void XmlLoader::initListScalePoint()
 void XmlLoader::readFile(const QString &fileName)
 {
 	mReadFile = true;
-//	mDocument = utils::xmlUtils::loadDocument(fileName);
+	mDocument = utils::xmlUtils::loadDocument(fileName);
 	readDocument();
 }
 
@@ -84,8 +85,8 @@ void XmlLoader::readPicture(QDomElement const &picture)
 
 	for (unsigned i = 0; i < pictureAttributes.length(); ++i) {
 		QDomElement type = pictureAttributes.at(i).toElement();
-//		if (type.tagName() == "line")
-//			readLine(type);
+		if (type.tagName() == "line")
+			readLine(type);
 //		else if (type.tagName() == "ellipse")
 //			readEllipse(type);
 //		else if (type.tagName() == "arc")
@@ -135,15 +136,45 @@ void XmlLoader::readPicture(QDomElement const &picture)
 //	}
 //}
 
-//void XmlLoader::readLine(QDomElement const &line)
-//{
-//	QPair<QPointF, QPointF> rect = readLineOfXandY(line);
-//	Line* item = new Line(rect.first.x(), rect.first.y(), rect.second.x(), rect.second.y(), NULL);
+void XmlLoader::readLine(QDomElement const &line)
+{
+	QPair<QPointF, QPointF> rect = readLineOfXandY(line);
+	Line* item = new Line(rect.first.x(), rect.first.y(), rect.second.x(), rect.second.y(), NULL);
 //	item->readPenBrush(line);
 //	item->setListScalePoint(mListScalePoint);
-//	mScene->addItem(item);
+	mScene->addItem(item);
 //	mScene->setZValue(item);
-//}
+}
+
+QPair<QPointF, QPointF> XmlLoader::readLineOfXandY(QDomElement const &docItem)
+{
+	initListScalePoint();
+	QPair<QString, bool> pointX1 = readScaleCoord("x1", docItem);
+	QPair<QString, bool> pointX2 = readScaleCoord("x2", docItem);
+	QPair<QString, bool> pointY1 = readScaleCoord("y1", docItem);
+	QPair<QString, bool> pointY2 = readScaleCoord("y2", docItem);
+	return calcLineOfXandY(pointX1, pointX2, pointY1, pointY2);
+}
+
+QPair<QString, bool> XmlLoader::readScaleCoord(QString point, QDomElement const &docItem)
+{
+	QString text = docItem.attribute(point, "0");
+	if (text.endsWith("a")) {
+		text.truncate(text.size() - 1);
+		return QPair<QString, bool>(text, true);
+	}
+	return QPair<QString, bool>(text, false);
+}
+
+QPair<QPointF, QPointF> XmlLoader::calcLineOfXandY(QPair<QString, bool> pointX1, QPair<QString, bool> pointX2, QPair<QString, bool> pointY1, QPair<QString, bool> pointY2)
+{
+	qreal x1 = pointX1.first.toDouble() + mDrift.x();
+	qreal x2 = pointX2.first.toDouble() + mDrift.x();
+	qreal y1 = pointY1.first.toDouble() + mDrift.y();
+	qreal y2 = pointY2.first.toDouble() + mDrift.y();
+
+	return QPair<QPointF, QPointF>(QPointF(x1, y1), QPointF(x2, y2));
+}
 
 //void XmlLoader::readEllipse(QDomElement const &ellipse)
 //{
