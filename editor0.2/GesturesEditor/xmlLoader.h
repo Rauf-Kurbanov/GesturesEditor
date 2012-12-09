@@ -5,7 +5,7 @@
 #include <scene.h>
 #include <item.h>
 //#include <parser.h>
-#include "../../qrutils/xmlUtils.h"
+//#include "../../qrutils/xmlUtils.h"
 //#include "C:/Users/Maestro/GesturesEditor/editor0.2/qrutils/xmlUtils.h"
 
 const int distanceFigure = 50;
@@ -38,4 +38,7 @@ private:
 	void readArch(QDomElement const &arch);
 	void readRectangle(QDomElement const &rectangle);
 	void readCurve(QDomElement const &element);
+	QPair<QPointF, QPointF> readLineOfXandY(QDomElement const &docItem);
+	QPair<QString, bool> readScaleCoord(QString point, QDomElement const &docItem);
+	QPair<QPointF, QPointF> calcLineOfXandY(QPair<QString, bool> pointX1, QPair<QString, bool> pointX2, QPair<QString, bool> pointY1, QPair<QString, bool> pointY2);
 };

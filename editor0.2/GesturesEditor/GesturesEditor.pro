@@ -31,3 +31,10 @@ HEADERS  += gestEdit.h \
 	xmlLoader.h
 
 FORMS    += gestEdit.ui
+
+LIBS += -L../bin -lqrutils
+#LIBS += -L../../qrutils -lqrutils
+#LIBS += -L <../../qrutils/qrutils.dll> -lqrutils
+#LIBS += -L../bin -lqrrepo -lqrkernel -lqrutils #-lqrmc
+#LIBS += -LC:\Users\Maestro\GesturesEditor\editor0.2\qrutils -lqrutils
+
